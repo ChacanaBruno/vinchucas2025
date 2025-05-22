@@ -28,6 +28,11 @@ Desktop.ini
 .project
 .classpath
 .settings/
+.metadata/
+*.class
+*.log
+bin/
+target/
 
 # IntelliJ IDEA
 .idea/
