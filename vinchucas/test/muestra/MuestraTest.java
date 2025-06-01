@@ -6,7 +6,7 @@ import static org.mockito.Mockito.mock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import Opinion.Opciones;
+import Opinion.Criterio;
 import usuario.Participante;
 import usuario.Usuario;
 
@@ -15,7 +15,7 @@ class MuestraTest {
 	private Muestra muestraSUT;
 	private Foto fotoMock;
 	private Ubicacion ubicacionMuestraMock;
-	private Opciones especieMock;
+	private Criterio especieMock;
 	private Participante usuarioMock;
 
 	@BeforeEach
@@ -23,7 +23,7 @@ class MuestraTest {
 
 		fotoMock = mock(Foto.class);
 
-		especieMock = mock(Opciones.class);
+		especieMock = mock(Criterio.class);
 
 		usuarioMock = mock(Participante.class);
 

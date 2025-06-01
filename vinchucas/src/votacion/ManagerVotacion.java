@@ -3,9 +3,9 @@ package votacion;
 import java.util.Map;
 import java.util.Set;
 
-import Opinion.Opciones;
+import Opinion.Criterio;
 import Opinion.Opinion;
 
 public class ManagerVotacion {
-	public Map<Opciones, Set<Opinion>> opiniones;
+	public Map<Criterio, Set<Opinion>> opiniones;
 }

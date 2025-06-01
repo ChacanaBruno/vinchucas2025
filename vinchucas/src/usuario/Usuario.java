@@ -3,7 +3,7 @@ package usuario;
 import java.util.HashSet;
 import java.util.Set;
 
-import Opinion.Opciones;
+import Opinion.Criterio;
 import Opinion.Opinion;
 import muestra.Muestra;
 
@@ -36,7 +36,7 @@ public class Usuario implements Participante {
 	}
 
 	@Override
-	public void opinarMuestra(Muestra muestra, Opciones opcion) {
+	public void opinarMuestra(Muestra muestra, Criterio opcion) {
 		// si cambia el constructor de opinion solo cambio esta linea
 		Opinion opinion = new Opinion(this, opcion);
 

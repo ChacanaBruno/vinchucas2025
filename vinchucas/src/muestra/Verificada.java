@@ -4,8 +4,17 @@ import Opinion.Opinion;
 
 public class Verificada implements EstadoMuestra {
 
+	// posibles exepciones, tal vez estado muestra podria ser clase abstracta para
+	// reutilizar codigo ahi
+
 	@Override
-	public void recibirOpinionPara(Opinion unaOpinion, Muestra unaMuestra) {
+	public void recibirOpinionExperta(Opinion unaOpinion, Muestra unaMuestra) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void recibirOpinionBasica(Opinion unaOpinion, Muestra unaMuestra) {
 		// TODO Auto-generated method stub
 
 	}

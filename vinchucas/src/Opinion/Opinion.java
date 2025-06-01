@@ -7,14 +7,12 @@ import usuario.Usuario;
 
 public class Opinion {
 	private Participante opinador;
-	private Opciones opcionSeleccionada;
-	private boolean esDeExperto;
+	private Criterio opcionSeleccionada;
 	private LocalDate fecha; // esto debe mockearse con un set
 
-	public Opinion(Participante opinador, Opciones opciones) {
+	public Opinion(Participante opinador, Criterio opciones) {
 		this.opinador = opinador;
 		this.opcionSeleccionada = opciones;
-		this.esDeExperto = false; // default
 		this.fecha = LocalDate.now();
 	}
 
@@ -26,20 +24,24 @@ public class Opinion {
 		this.opinador = opinador;
 	}
 
-	public Opciones getOpcionSeleccionada() {
+	public Criterio getOpcionSeleccionada() {
 		return opcionSeleccionada;
 	}
 
-	public void setOpciones(Opciones opciones) {
+	public void setOpciones(Criterio opciones) {
 		this.opcionSeleccionada = opciones;
 	}
 
-	public boolean isEsDeExperto() {
-		return esDeExperto;
+	public LocalDate getFecha() {
+		return fecha;
 	}
 
-	public void setEsDeExperto(boolean esDeExperto) {
-		this.esDeExperto = esDeExperto;
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
+
+	public void setOpcionSeleccionada(Criterio opcionSeleccionada) {
+		this.opcionSeleccionada = opcionSeleccionada;
 	}
 
 }

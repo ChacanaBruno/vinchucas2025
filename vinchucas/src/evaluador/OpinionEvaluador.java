@@ -1,68 +1,77 @@
 package evaluador;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import Opinion.Opciones;
+import Opinion.Criterio;
 import Opinion.Opinion;
 
 public class OpinionEvaluador implements Evaluable {
 
-	public OpinionEvaluador() {}
-
-	public Opciones resultadoActual(Set<Opinion> opiniones) {
-		boolean hayExpertos = opiniones.stream().anyMatch(Opinion::isEsDeExperto);
-		return hayExpertos ? resultadoActualPorExpertos(opiniones) : resultadoActualPorBasico(opiniones);
+	public OpinionEvaluador() {
 	}
 
-	public Opciones resultadoActualPorExpertos(Set<Opinion> opiniones) {
-		List<Opinion> opinionesExpertos = opiniones.stream()
-			.filter(Opinion::isEsDeExperto)
-			.collect(Collectors.toList());
-
-		return opcionGanadora(opinionesExpertos);
+	@Override
+	public Criterio resultadoActual(Set<Opinion> opiniones) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public Opciones resultadoActualPorBasico(Set<Opinion> opiniones) {
-		List<Opinion> opinionesBasicos = opiniones.stream()
-			.filter(op -> !op.isEsDeExperto())
-			.collect(Collectors.toList());
-
-		return opcionGanadora(opinionesBasicos);
+	@Override
+	public Criterio resultadoActualPorExpertos(Set<Opinion> opiniones) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public Opciones opcionGanadora(List<Opinion> opiniones) {
-	    Map<Opciones, Long> votosPorOpcion = opiniones.stream()
-	        .collect(Collectors.groupingBy(
-	            Opinion::getOpcionSeleccionada,
-	            Collectors.counting()
-	        ));
+	@Override
+	public Criterio resultadoActualPorBasico(Set<Opinion> opiniones) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-	    if (votosPorOpcion.isEmpty()) {
-	        return Opciones.NO_DEFINIDO;
+	@Override
+	public Criterio opcionGanadora(Set<Opinion> opiniones) {
+	    if (opiniones.isEmpty()) {
+	        return Criterio.NO_DEFINIDO;
 	    }
 
-	    long maxVotos = votosPorOpcion.values().stream()
-	        .max(Long::compare)
-	        .orElse(0L);
+	    Map<Criterio, Integer> conteo = new HashMap<>();
 
-	    List<Opciones> opcionesConMaxVotos = votosPorOpcion.entrySet().stream()
-	        .filter(entry -> entry.getValue() == maxVotos)
-	        .map(Map.Entry::getKey)
-	        .collect(Collectors.toList());
+	    // Contar votos
+	    for (Opinion opinion : opiniones) {
+	        Criterio criterio = opinion.getOpcionSeleccionada();
+	        conteo.put(criterio, conteo.getOrDefault(criterio, 0) + 1);
+	    }
 
-	    return (opcionesConMaxVotos.size() == 1)
-	        ? opcionesConMaxVotos.get(0)
-	        : Opciones.NO_DEFINIDO;
+	    // Buscar el máximo
+	    int maxVotos = 0;
+	    for (int cantidad : conteo.values()) {
+	        if (cantidad > maxVotos) {
+	            maxVotos = cantidad;
+	        }
+	    }
+
+	    // Verificar cuántos criterios tienen el máximo
+	    Criterio candidato = null;
+	    int cantidadMaximos = 0;
+
+	    for (Map.Entry<Criterio, Integer> entry : conteo.entrySet()) {
+	        if (entry.getValue() == maxVotos) {
+	            cantidadMaximos++;
+	            candidato = entry.getKey();
+	        }
+	    }
+
+	    return (cantidadMaximos == 1) ? candidato : Criterio.NO_DEFINIDO;
 	}
 
+	@Override
 	public boolean hayAcuerdoEntreExpertos(Set<Opinion> opiniones, Opinion unaOpinion) {
-		return opiniones.stream()
-			.filter(Opinion::isEsDeExperto)
-			.collect(Collectors.groupingBy(Opinion::getOpcionSeleccionada, Collectors.counting()))
-			.values().stream()
-			.anyMatch(count -> count >= 2);
+		// TODO Auto-generated method stub
+		return false;
 	}
+
 }

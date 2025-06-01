@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import Opinion.Opciones;
+import Opinion.Criterio;
 import Opinion.Opinion;
 import evaluador.Evaluable;
 import evaluador.OpinionEvaluador;
@@ -15,7 +15,7 @@ import usuario.Usuario;
 
 public class Muestra {
 
-	private Opciones especie; // primer voto?
+	private Criterio especie; // primer voto?
 	private Foto foto; // DEPENDER DE ABSTRACCION
 	private Participante usuario; // DEPENDER DE ABSTRACCION
 
@@ -27,7 +27,11 @@ public class Muestra {
 
 	private Evaluable evaluador;
 
-	public Muestra(Opciones especie, Foto foto, Ubicacion ubicacion, Participante usuario) {
+	private Set<Opinion> opinionesBasicas;
+
+	private Set<Opinion> opinionesExpertas;
+
+	public Muestra(Criterio especie, Foto foto, Ubicacion ubicacion, Participante usuario) {
 		this.especie = especie;
 		this.foto = foto;
 		this.usuario = usuario;
@@ -38,10 +42,20 @@ public class Muestra {
 
 	}
 
-	public void recibirOpinion(Opinion unaOpinion) {
-		if (!unaOpinion.getOpinador().equals(usuario)) {
-			estadoMuestra.recibirOpinionPara(unaOpinion, this);
+	public void recibirOpinionBasica(Opinion unaOpinion) {
+		if (validacionIdentidad(unaOpinion)) {
+			estadoMuestra.recibirOpinionBasica(unaOpinion, this);
 		}
+	}
+
+	public void recibirOpinionExperta(Opinion unaOpinion) {
+		if (validacionIdentidad(unaOpinion)) {
+			estadoMuestra.recibirOpinionExperta(unaOpinion, this);
+		}
+	}
+
+	public boolean validacionIdentidad(Opinion unaOpinion) {
+		return !unaOpinion.getOpinador().equals(usuario);
 	}
 
 	public void registrarOpinion(Opinion unaOpinion) {
@@ -49,28 +63,36 @@ public class Muestra {
 
 	}
 
-	public Opciones opinionDePublicador() {
+	public Criterio opinionDePublicador() {
 		return especie;
 	}
 
-	public Opciones resultadoActual() {
+	public Criterio resultadoActual() {
 
-		return evaluador.resultadoActual(this.getOpinionesRecibidas());
+		if (this.getOpinionesExpertas().isEmpty()) {
+
+			return this.resultadoActualPorBasico();
+
+		} else {
+
+			return this.resultadoActualPorExpertos();
+		}
+
 	}
 
-	public Opciones resultadoActualPorExpertos() {
+	public Criterio resultadoActualPorExpertos() {
 
-		return evaluador.resultadoActualPorExpertos(this.getOpinionesRecibidas());
+		return evaluador.resultadoActualPorExpertos(this.getOpinionesExpertas());
 	}
 
-	public Opciones resultadoActualPorBasico() {
+	public Criterio resultadoActualPorBasico() {
 
-		return evaluador.resultadoActualPorBasico(this.getOpinionesRecibidas());
+		return evaluador.opcionGanadora(this.getOpinionesBasicas()); // por aca
 	}
 
 	public boolean hayAcuerdoEntreExpertos(Opinion unaOpinion) {
 
-		return evaluador.hayAcuerdoEntreExpertos(this.getOpinionesRecibidas(), unaOpinion);
+		return evaluador.hayAcuerdoEntreExpertos(this.getOpinionesExpertas(), unaOpinion);
 	}
 
 	// GETTERS AND SETTERS
@@ -78,11 +100,11 @@ public class Muestra {
 		return foto;
 	}
 
-	public Opciones getEspecie() {
+	public Criterio getEspecie() {
 		return especie;
 	}
 
-	public void setEspecie(Opciones especie) {
+	public void setEspecie(Criterio especie) {
 		this.especie = especie;
 	}
 
@@ -132,5 +154,31 @@ public class Muestra {
 
 	public void setEvaluador(Evaluable evaluador) {
 		this.evaluador = evaluador;
-	}	
+	}
+
+	public void agregarOpinionBasica(Opinion unaOpinion) {
+		opinionesBasicas.add(unaOpinion);
+	}
+
+	public void agregarOpinionExperta(Opinion unaOpinion) {
+		opinionesExpertas.add(unaOpinion);
+
+	}
+
+	public Set<Opinion> getOpinionesBasicas() {
+		return opinionesBasicas;
+	}
+
+	public void setOpinionesBasicas(Set<Opinion> opinionesBasicas) {
+		this.opinionesBasicas = opinionesBasicas;
+	}
+
+	public Set<Opinion> getOpinionesExpertas() {
+		return opinionesExpertas;
+	}
+
+	public void setOpinionesExpertas(Set<Opinion> opinionesExpertas) {
+		this.opinionesExpertas = opinionesExpertas;
+	}
+
 }

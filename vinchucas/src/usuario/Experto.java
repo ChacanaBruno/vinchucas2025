@@ -7,8 +7,7 @@ public class Experto implements Rango {
 
 	@Override
 	public void establecerOpinionParaMuestra(Opinion unaOpinion, Muestra muestra) {
-		unaOpinion.setEsDeExperto(true);
-		muestra.recibirOpinion(unaOpinion);
+		muestra.recibirOpinionExperta(unaOpinion);
 	}
 
 }
