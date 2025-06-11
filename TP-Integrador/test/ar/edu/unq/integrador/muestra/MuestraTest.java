@@ -11,11 +11,13 @@ import ar.edu.unq.integrador.opinion.Opinion;
 
 import static org.mockito.Mockito.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 class MuestraTest {
+	LocalDate fecha;
 	Formulario formulario;
 	EstadoMuestra estadoMuestra;
 	Opinion op1;
@@ -25,6 +27,7 @@ class MuestraTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		fecha = mock(LocalDate.class);
 		formulario = mock(Formulario.class);
 		estadoMuestra = mock(EstadoMuestra.class);
 		op1 = mock(Opinion.class);
@@ -36,9 +39,10 @@ class MuestraTest {
 	@Test
 	void test_MuestraConstructor() {		
 		// Exercise
-		Muestra muestra = new Muestra(formulario, estadoMuestra, opiniones);
+		Muestra muestra = new Muestra(fecha, formulario, estadoMuestra, opiniones);
 		
-		// Verify		
+		// Verify
+		assertEquals(fecha, muestra.getFecha());
 		assertEquals(formulario, muestra.getFormulario());
 		assertEquals(estadoMuestra, muestra.getEstadoMuestra());
 		assertEquals(opiniones, muestra.getOpiniones());
@@ -48,7 +52,7 @@ class MuestraTest {
 	@Test
 	void test_MuestraSabeSuAutor() {
 		// Exercise
-		Muestra muestra = new Muestra(formulario, estadoMuestra, opiniones);
+		Muestra muestra = new Muestra(fecha, formulario, estadoMuestra, opiniones);
 		Formulario formulario = muestra.getFormulario();
 		muestra.getAutor();
 		
@@ -59,7 +63,7 @@ class MuestraTest {
 	@Test
 	void test_MuestraSabeSuFoto() {
 		// Exercise
-		Muestra muestra = new Muestra(formulario, estadoMuestra, opiniones);
+		Muestra muestra = new Muestra(fecha, formulario, estadoMuestra, opiniones);
 		Formulario formulario = muestra.getFormulario();
 		muestra.getFoto();
 		
@@ -70,7 +74,7 @@ class MuestraTest {
 	@Test
 	void test_MuestraSabeSuUbicacion() {
 		// Exercise
-		Muestra muestra = new Muestra(formulario, estadoMuestra, opiniones);
+		Muestra muestra = new Muestra(fecha, formulario, estadoMuestra, opiniones);
 		Formulario formulario = muestra.getFormulario();
 		muestra.getUbicacion();
 		
@@ -84,7 +88,7 @@ class MuestraTest {
 		List<Opinion> ops = new ArrayList<>();
 		
 		// Exercise
-		Muestra muestra = new Muestra(formulario, estadoMuestra, ops);
+		Muestra muestra = new Muestra(fecha, formulario, estadoMuestra, ops);
 		muestra.agregarOpinion(op3);
 		
 		// Verify

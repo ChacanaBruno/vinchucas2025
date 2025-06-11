@@ -1,5 +1,6 @@
 package ar.edu.unq.integrador.muestra;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import ar.edu.unq.integrador.estadoMuestra.EstadoMuestra;
@@ -10,18 +11,28 @@ import ar.edu.unq.integrador.usuario.Usuario;
 
 public class Muestra {
 	// Atributos
+	private LocalDate fecha;
 	private Formulario formulario;
 	private EstadoMuestra estadoMuestra;
 	private List<Opinion> opiniones;
 	
 	// Constructor
-	public Muestra(Formulario formulario, EstadoMuestra estadoMuestra, List<Opinion> opiniones) {
+	public Muestra(LocalDate fecha, Formulario formulario, EstadoMuestra estadoMuestra, List<Opinion> opiniones) {
+		this.setFecha(fecha);
 		this.setFormulario(formulario);
 		this.setEstadoMuestra(estadoMuestra);
 		this.setOpiniones(opiniones);
 	}
 	
 	// Accessors
+	public LocalDate getFecha() {
+		return this.fecha;
+	}
+	
+	public void setFecha(LocalDate f) {
+		this.fecha = f;
+	}
+	
 	public Formulario getFormulario() {
 		return formulario;
 	}
