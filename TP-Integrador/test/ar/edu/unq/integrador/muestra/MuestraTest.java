@@ -11,6 +11,7 @@ import ar.edu.unq.integrador.opinion.Opinion;
 
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,6 +20,7 @@ class MuestraTest {
 	EstadoMuestra estadoMuestra;
 	Opinion op1;
 	Opinion op2;
+	Opinion op3;
 	List<Opinion> opiniones;
 
 	@BeforeEach
@@ -27,6 +29,7 @@ class MuestraTest {
 		estadoMuestra = mock(EstadoMuestra.class);
 		op1 = mock(Opinion.class);
 		op2 = mock(Opinion.class);
+		op3 = mock(Opinion.class);
 		opiniones = Arrays.asList(op1,op2);
 	}
 
@@ -43,7 +46,7 @@ class MuestraTest {
 	}
 	
 	@Test
-	void test_MuestraSabeDecirQuienEsSuAutor() {
+	void test_MuestraSabeSuAutor() {
 		// Exercise
 		Muestra muestra = new Muestra(formulario, estadoMuestra, opiniones);
 		Formulario formulario = muestra.getFormulario();
@@ -51,6 +54,41 @@ class MuestraTest {
 		
 		// Verify
 		verify(formulario, times(1)).getAutor();
+	}
+	
+	@Test
+	void test_MuestraSabeSuFoto() {
+		// Exercise
+		Muestra muestra = new Muestra(formulario, estadoMuestra, opiniones);
+		Formulario formulario = muestra.getFormulario();
+		muestra.getFoto();
+		
+		// Verify
+		verify(formulario, times(1)).getFoto();
+	}
+	
+	@Test
+	void test_MuestraSabeSuUbicacion() {
+		// Exercise
+		Muestra muestra = new Muestra(formulario, estadoMuestra, opiniones);
+		Formulario formulario = muestra.getFormulario();
+		muestra.getUbicacion();
+		
+		// Verify
+		verify(formulario, times(1)).getUbicacion();
+	}
+	
+	@Test
+	void test_MuestraAgregaUnaOpinion() {
+		// Setup
+		List<Opinion> ops = new ArrayList<>();
+		
+		// Exercise
+		Muestra muestra = new Muestra(formulario, estadoMuestra, ops);
+		muestra.agregarOpinion(op3);
+		
+		// Verify
+		assertEquals(1, muestra.getOpiniones().size());
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import ar.edu.unq.integrador.estadoMuestra.EstadoMuestra;
 import ar.edu.unq.integrador.formulario.Formulario;
 import ar.edu.unq.integrador.opinion.Opinion;
+import ar.edu.unq.integrador.ubicacion.Ubicacion;
 import ar.edu.unq.integrador.usuario.Usuario;
 
 public class Muestra {
@@ -40,9 +41,34 @@ public class Muestra {
 		this.opiniones = opiniones;
 	}
 
+	// Metodos
 	public Usuario getAutor() {
 		return this.getFormulario().getAutor();
 	}
-	
-	
+
+	public String getFoto() {
+		return this.getFormulario().getFoto();		
+	}
+
+	public Ubicacion getUbicacion() {
+		return this.getFormulario().getUbicacion();
+		
+	}
+
+	public void agregarOpinion(Opinion op) {
+		Usuario autor = op.getAutor();
+		List<Opinion> opiniones = this.getOpiniones();
+		
+        if (!elUsuarioYaOpino(autor)){
+            opiniones.add(op);
+        } else {
+        	throw new RuntimeException("El usuario ya registra una opinion en la muestra");
+        }
+		
+	}
+
+	private boolean elUsuarioYaOpino(Usuario usuario) {
+		List<Opinion> opiniones = this.getOpiniones();
+		return opiniones.stream().anyMatch(o -> o.getAutor().equals(usuario));
+	}	
 }
