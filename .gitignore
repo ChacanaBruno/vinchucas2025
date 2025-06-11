@@ -51,3 +51,4 @@ nbdist/
 *.bak
 *.tmp
 *.orig
+/.metadata/
