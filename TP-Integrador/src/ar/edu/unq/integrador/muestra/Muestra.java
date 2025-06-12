@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import ar.edu.unq.integrador.concepto.Concepto;
 import ar.edu.unq.integrador.estadoMuestra.EstadoMuestra;
 import ar.edu.unq.integrador.formulario.Formulario;
 import ar.edu.unq.integrador.opinion.Opinion;
@@ -64,7 +65,6 @@ public class Muestra {
 
 	public Ubicacion getUbicacion() {
 		return this.getFormulario().getUbicacion();
-		
 	}
 
 	public void agregarOpinion(Opinion op) {
@@ -75,9 +75,7 @@ public class Muestra {
         	throw new RuntimeException("El usuario ya registra una opinion en la muestra");
         } else {        	
         	opiniones.add(op);
-        }
-
-		
+        }	
 	}
 
 	public boolean elUsuarioYaOpino(Usuario usuario) {
@@ -98,5 +96,9 @@ public class Muestra {
 	                    .values()
 	                    .stream()
 	                    .anyMatch(count -> count >= 2);
+	}
+	
+	public Concepto resultadoActual() {
+		return this.getEstadoMuestra().resultadoActual(this);	
 	}
 }

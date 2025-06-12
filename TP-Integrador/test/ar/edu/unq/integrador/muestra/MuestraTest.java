@@ -132,7 +132,7 @@ class MuestraTest {
 
 		// Verify
 		assertEquals(muestra.getOpiniones().size(), 2);
-		assertEquals("Solo pueden opinar Expertos!", excepcion.getMessage()); // msj que tira cuando esta EnEvaluacion		
+		assertEquals("Solo pueden opinar Expertos!", excepcion.getMessage()); // msj que tira cuando esta EnEvaluacion y quiere opinar un basico		
 	}
 	
 	@Test
@@ -156,7 +156,7 @@ class MuestraTest {
 		
 		// Verify
 		assertEquals(muestra.getOpiniones().size(), 1);
-		assertEquals("El usuario ya registra una opinion en la muestra", excepcion.getMessage()); // msj que tira cuando alguien intenta opinar 2 veces
+		assertEquals("El usuario ya registra una opinion en la muestra", excepcion.getMessage()); // msj que tira cuando alguien intenta opinar 2 veces en la misma muestra
 		
 	}
 	
@@ -184,8 +184,82 @@ class MuestraTest {
 		
 		// Verify
 		assertEquals(muestra.getOpiniones().size(), 2);
-		assertEquals("No se aceptan mas opiniones", excepcion.getMessage()); // msj que tira cuando la muestra ya esta verificada
+		assertEquals("No se aceptan mas opiniones", excepcion.getMessage()); // msj que tira cuando la muestra ya esta verificada, por lo tanto no acepta mas opiniones
 	}
 	
+	@Test
+	void test_UnaMuestraNoVerificadaPuedeDecirSuResultadoActual() {
+		// Setup
+		EstadoMuestra estadoOg = new NoVerificada();
+		List<Opinion> opinionesOg = new ArrayList<>();
+		
+		Usuario usuarioBasico1 = new Usuario("DaVinchu", new Basico(), new ArrayList<>(), new ArrayList<>());
+		Usuario usuarioBasico2 = new Usuario("Vincho", new Basico(), new ArrayList<>(), new ArrayList<>());
+		Usuario usuarioBasico3 = new Usuario("Vincha", new Basico(), new ArrayList<>(), new ArrayList<>());
+			
+		Opinion opinionBasica1 = new OpinionUsuarioBasico(LocalDate.now(), usuarioBasico1, Concepto.VINCHUCA_GUASAYANA);
+		Opinion opinionBasica2 = new OpinionUsuarioBasico(LocalDate.now(), usuarioBasico2, Concepto.VINCHUCA_GUASAYANA);
+		Opinion opinionBasica3 = new OpinionUsuarioBasico(LocalDate.now(), usuarioBasico3, Concepto.IMAGEN_POCO_CLARA);
+		
+		// Exercise
+		Muestra muestra = new Muestra(fecha, formulario, estadoOg, opinionesOg);
+		muestra.recibirOpinion(opinionBasica1);
+		muestra.recibirOpinion(opinionBasica2);
+		muestra.recibirOpinion(opinionBasica3);
+		
+		// Verify
+		assertEquals(muestra.getOpiniones().size(), 3);
+		assertEquals(muestra.resultadoActual(), Concepto.VINCHUCA_GUASAYANA);
+	}
+	
+	@Test
+	void test_UnaMuestraEnEvaluacionNoTieneResultadoDefinidoEnCasoDeEmpate() {
+		// Setup
+		EstadoMuestra estadoOg = new NoVerificada();
+		List<Opinion> opinionesOg = new ArrayList<>();
+		
+		Usuario usuarioBasico1 = new Usuario("DaVinchu", new Basico(), new ArrayList<>(), new ArrayList<>());
+		Usuario usuarioExperto1 = new Usuario("Vincho", new Experto(), new ArrayList<>(), new ArrayList<>());
+		Usuario usuarioExperto2 = new Usuario("Vincha", new Experto(), new ArrayList<>(), new ArrayList<>());
+			
+		Opinion opinionBasica1 = new OpinionUsuarioBasico(LocalDate.now(), usuarioBasico1, Concepto.VINCHUCA_GUASAYANA);
+		Opinion opinionExperta1 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto1, Concepto.CHINCHE_FOLIADA);
+		Opinion opinionExperta2 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto2, Concepto.IMAGEN_POCO_CLARA);
+		
+		// Exercise
+		Muestra muestra = new Muestra(fecha, formulario, estadoOg, opinionesOg);
+		muestra.recibirOpinion(opinionBasica1);
+		muestra.recibirOpinion(opinionExperta1);
+		muestra.recibirOpinion(opinionExperta2);
+		
+		// Verify
+		assertEquals(muestra.getOpiniones().size(), 3);
+		assertEquals(muestra.resultadoActual(), Concepto.NO_DEFINIDO);
+	}
+	
+	@Test
+	void test_UnaMuestraVerificadaPuedeDecirSuResultadoActual() {
+		// Setup
+		EstadoMuestra estadoOg = new NoVerificada();
+		List<Opinion> opinionesOg = new ArrayList<>();
+		
+		Usuario usuarioBasico1 = new Usuario("DaVinchu", new Basico(), new ArrayList<>(), new ArrayList<>());
+		Usuario usuarioExperto1 = new Usuario("Vincho", new Experto(), new ArrayList<>(), new ArrayList<>());
+		Usuario usuarioExperto2 = new Usuario("Vincha", new Experto(), new ArrayList<>(), new ArrayList<>());
+			
+		Opinion opinionBasica1 = new OpinionUsuarioBasico(LocalDate.now(), usuarioBasico1, Concepto.VINCHUCA_GUASAYANA);
+		Opinion opinionExperta1 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto1, Concepto.CHINCHE_FOLIADA);
+		Opinion opinionExperta2 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto2, Concepto.CHINCHE_FOLIADA);
+		
+		// Exercise
+		Muestra muestra = new Muestra(fecha, formulario, estadoOg, opinionesOg);
+		muestra.recibirOpinion(opinionBasica1);
+		muestra.recibirOpinion(opinionExperta1);
+		muestra.recibirOpinion(opinionExperta2);
+		
+		// Verify
+		assertEquals(muestra.getOpiniones().size(), 3);
+		assertEquals(muestra.resultadoActual(), Concepto.CHINCHE_FOLIADA);
+	}
 	
 }
