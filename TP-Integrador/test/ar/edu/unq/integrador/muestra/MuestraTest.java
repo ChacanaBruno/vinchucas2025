@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ar.edu.unq.integrador.categoria.*;
+import ar.edu.unq.integrador.concepto.Concepto;
 import ar.edu.unq.integrador.estadoMuestra.*;
 
 import ar.edu.unq.integrador.formulario.Formulario;
@@ -133,30 +135,57 @@ class MuestraTest {
 		assertEquals("Solo pueden opinar Expertos!", excepcion.getMessage()); // msj que tira cuando esta EnEvaluacion		
 	}
 	
+	@Test
+	void test_UnaMuestraNoPuedeRecibirDosOpinionesDeUnMismoUsuario() {
+		// Setup
+		EstadoMuestra estadoOg = new EnEvaluacion();
+		List<Opinion> opinionesOg = new ArrayList<>();
+		
+		Usuario usuarioExperto1 = new Usuario("VinchucaKiller", new Experto(), new ArrayList<>(), new ArrayList<>());
+			
+		Opinion opinionExperta1 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto1, Concepto.VINCHUCA_GUASAYANA);
+		Opinion opinionExperta2 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto1, Concepto.VINCHUCA_GUASAYANA);
+
+
+		// Exercise
+		Muestra muestra = new Muestra(fecha, formulario, estadoOg, opinionesOg);
+		
+		muestra.recibirOpinion(opinionExperta1);
+		
+		Exception excepcion = assertThrows(RuntimeException.class, () -> {muestra.recibirOpinion(opinionExperta2);});
+		
+		// Verify
+		assertEquals(muestra.getOpiniones().size(), 1);
+		assertEquals("El usuario ya registra una opinion en la muestra", excepcion.getMessage()); // msj que tira cuando alguien intenta opinar 2 veces
+		
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Test
+	void test_UnaMuestraEnEvaluacionRecibeSuficientesOpinionesExpertasValidasYQuedaVerificada() {
+		// Setup
+		EstadoMuestra estadoOg = new EnEvaluacion();
+		List<Opinion> opinionesOg = new ArrayList<>();
+		
+		Usuario usuarioExperto1 = new Usuario("VinchucaKiller", new Experto(), new ArrayList<>(), new ArrayList<>());
+		Usuario usuarioExperto2 = new Usuario("VinchucaSlayer", new Experto(), new ArrayList<>(), new ArrayList<>());
+		Usuario usuarioBasico1 = new Usuario("Vinchuquinho", new Basico(), new ArrayList<>(), new ArrayList<>());
+		
+		Opinion opinionExperta1 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto1, Concepto.VINCHUCA_GUASAYANA);
+		Opinion opinionExperta2 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto2, Concepto.VINCHUCA_GUASAYANA);
+		Opinion opinionBasica1 = new OpinionUsuarioExperto(LocalDate.now(), usuarioBasico1, Concepto.IMAGEN_POCO_CLARA);
+		
+		// Exercise
+		Muestra muestra = new Muestra(fecha, formulario, estadoOg, opinionesOg);
+		
+		muestra.recibirOpinion(opinionExperta1);
+		muestra.recibirOpinion(opinionExperta2);
+		
+		Exception excepcion = assertThrows(RuntimeException.class, () -> {muestra.recibirOpinion(opinionBasica1);});
+		
+		// Verify
+		assertEquals(muestra.getOpiniones().size(), 2);
+		assertEquals("No se aceptan mas opiniones", excepcion.getMessage()); // msj que tira cuando la muestra ya esta verificada
+	}
 	
 	
 }

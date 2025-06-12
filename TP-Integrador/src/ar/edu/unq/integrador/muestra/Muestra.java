@@ -71,15 +71,16 @@ public class Muestra {
 		Usuario autor = op.getAutor();
 		List<Opinion> opiniones = this.getOpiniones();
 		
-        if (!elUsuarioYaOpino(autor)){
-            opiniones.add(op);
-        } else {
+        if (elUsuarioYaOpino(autor)){
         	throw new RuntimeException("El usuario ya registra una opinion en la muestra");
+        } else {        	
+        	opiniones.add(op);
         }
+
 		
 	}
 
-	private boolean elUsuarioYaOpino(Usuario usuario) {
+	public boolean elUsuarioYaOpino(Usuario usuario) {
 		List<Opinion> opiniones = this.getOpiniones();
 		return opiniones.stream().anyMatch(o -> o.getAutor().equals(usuario));
 	}
