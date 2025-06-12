@@ -2,6 +2,7 @@ package ar.edu.unq.integrador.muestra;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import ar.edu.unq.integrador.estadoMuestra.EstadoMuestra;
 import ar.edu.unq.integrador.formulario.Formulario;
@@ -81,5 +82,20 @@ public class Muestra {
 	private boolean elUsuarioYaOpino(Usuario usuario) {
 		List<Opinion> opiniones = this.getOpiniones();
 		return opiniones.stream().anyMatch(o -> o.getAutor().equals(usuario));
-	}	
+	}
+	
+	public void recibirOpinion(Opinion o) {
+		this.getEstadoMuestra().recibirOpinion(o, this);
+	}
+
+	public boolean hayConsensoEntreExpertos() {
+		List<Opinion> opiniones = this.getOpiniones();
+		
+	    return opiniones.stream()
+	                    .filter(o -> o.esOpinionExperta())
+	                    .collect(Collectors.groupingBy(o -> o.getConcepto(), Collectors.counting()))
+	                    .values()
+	                    .stream()
+	                    .anyMatch(count -> count >= 2);
+	}
 }

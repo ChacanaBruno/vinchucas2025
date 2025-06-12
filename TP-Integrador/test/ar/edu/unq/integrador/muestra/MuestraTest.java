@@ -5,9 +5,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ar.edu.unq.integrador.estadoMuestra.EstadoMuestra;
+import ar.edu.unq.integrador.estadoMuestra.*;
+
 import ar.edu.unq.integrador.formulario.Formulario;
-import ar.edu.unq.integrador.opinion.Opinion;
+import ar.edu.unq.integrador.opinion.*;
+
+import ar.edu.unq.integrador.usuario.Usuario;
 
 import static org.mockito.Mockito.*;
 
@@ -94,5 +97,66 @@ class MuestraTest {
 		// Verify
 		assertEquals(1, muestra.getOpiniones().size());
 	}
+	
+	@Test
+	void test_MuestraNoVerificadaRecibeUnaOpinionExpertaYCambiaEstado() {
+		// Setup
+		EstadoMuestra estadoOg = new NoVerificada();
+		List<Opinion> opinionesOg = new ArrayList<>();
+		
+		Usuario usuarioBasico1 = mock(Usuario.class);
+		Usuario usuarioBasico2 = mock(Usuario.class);
+		Usuario usuarioExperto = mock(Usuario.class);
+		
+		Opinion opinionBasica1 = mock(OpinionUsuarioBasico.class);
+		when(opinionBasica1.esOpinionExperta()).thenReturn(false);
+		when(opinionBasica1.getAutor()).thenReturn(usuarioBasico1);
+		
+		Opinion opinionBasica2 = mock(OpinionUsuarioBasico.class);
+		when(opinionBasica2.esOpinionExperta()).thenReturn(false);
+		when(opinionBasica2.getAutor()).thenReturn(usuarioBasico2);
+		
+		Opinion opinionExperta = mock(OpinionUsuarioExperto.class);
+		when(opinionExperta.esOpinionExperta()).thenReturn(true);
+		when(opinionExperta.getAutor()).thenReturn(usuarioExperto);
+		
+		// Exercise
+		Muestra muestra = new Muestra(fecha, formulario, estadoOg, opinionesOg);
+		
+		muestra.recibirOpinion(opinionBasica1);
+		muestra.recibirOpinion(opinionExperta);
+		
+		Exception excepcion = assertThrows(RuntimeException.class, () -> {muestra.recibirOpinion(opinionBasica2);});
 
+		// Verify
+		assertEquals(muestra.getOpiniones().size(), 2);
+		assertEquals("Solo pueden opinar Expertos!", excepcion.getMessage()); // msj que tira cuando esta EnEvaluacion		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
