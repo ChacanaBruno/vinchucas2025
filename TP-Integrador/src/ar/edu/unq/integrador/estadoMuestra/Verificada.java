@@ -31,6 +31,11 @@ public class Verificada implements EstadoMuestra {
                 .get()
                 .getKey();
 	}
+
+	@Override
+	public boolean esVerificada() {
+		return true;
+	}
 	
 	
 	

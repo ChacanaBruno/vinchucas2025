@@ -36,6 +36,11 @@ public class NoVerificada implements EstadoMuestra{
 		                .get()
 		                .getKey();
 	}
+
+	@Override
+	public boolean esVerificada() {
+		return false;
+	}
 	
 	
 

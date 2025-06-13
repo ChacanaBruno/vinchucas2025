@@ -141,13 +141,15 @@ class MuestraTest {
 		List<Opinion> opinionesOg = new ArrayList<>();
 		
 		Usuario usuarioExperto1 = new Usuario("VinchucaKiller", new Experto(), new ArrayList<>(), new ArrayList<>());
-			
-		Opinion opinionExperta1 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto1, Concepto.VINCHUCA_GUASAYANA);
-		Opinion opinionExperta2 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto1, Concepto.VINCHUCA_GUASAYANA);
+		
+		Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
+		
+		Opinion opinionExperta1 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto1, Concepto.VINCHUCA_GUASAYANA, muestra);
+		Opinion opinionExperta2 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto1, Concepto.VINCHUCA_GUASAYANA, muestra);
 
 
 		// Exercise
-		Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
+		//Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
 		
 		muestra.recibirOpinion(opinionExperta1);
 		
@@ -169,12 +171,14 @@ class MuestraTest {
 		Usuario usuarioExperto2 = new Usuario("VinchucaSlayer", new Experto(), new ArrayList<>(), new ArrayList<>());
 		Usuario usuarioBasico1 = new Usuario("Vinchuquinho", new Basico(), new ArrayList<>(), new ArrayList<>());
 		
-		Opinion opinionExperta1 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto1, Concepto.VINCHUCA_GUASAYANA);
-		Opinion opinionExperta2 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto2, Concepto.VINCHUCA_GUASAYANA);
-		Opinion opinionBasica1 = new OpinionUsuarioExperto(LocalDate.now(), usuarioBasico1, Concepto.IMAGEN_POCO_CLARA);
+		Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
+		
+		Opinion opinionExperta1 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto1, Concepto.VINCHUCA_GUASAYANA, muestra);
+		Opinion opinionExperta2 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto2, Concepto.VINCHUCA_GUASAYANA, muestra);
+		Opinion opinionBasica1 = new OpinionUsuarioExperto(LocalDate.now(), usuarioBasico1, Concepto.IMAGEN_POCO_CLARA, muestra);
 		
 		// Exercise
-		Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
+		//Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
 		
 		muestra.recibirOpinion(opinionExperta1);
 		muestra.recibirOpinion(opinionExperta2);
@@ -195,13 +199,15 @@ class MuestraTest {
 		Usuario usuarioBasico1 = new Usuario("DaVinchu", new Basico(), new ArrayList<>(), new ArrayList<>());
 		Usuario usuarioBasico2 = new Usuario("Vincho", new Basico(), new ArrayList<>(), new ArrayList<>());
 		Usuario usuarioBasico3 = new Usuario("Vincha", new Basico(), new ArrayList<>(), new ArrayList<>());
-			
-		Opinion opinionBasica1 = new OpinionUsuarioBasico(LocalDate.now(), usuarioBasico1, Concepto.VINCHUCA_GUASAYANA);
-		Opinion opinionBasica2 = new OpinionUsuarioBasico(LocalDate.now(), usuarioBasico2, Concepto.VINCHUCA_GUASAYANA);
-		Opinion opinionBasica3 = new OpinionUsuarioBasico(LocalDate.now(), usuarioBasico3, Concepto.IMAGEN_POCO_CLARA);
+		
+		Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
+		
+		Opinion opinionBasica1 = new OpinionUsuarioBasico(LocalDate.now(), usuarioBasico1, Concepto.VINCHUCA_GUASAYANA,muestra);
+		Opinion opinionBasica2 = new OpinionUsuarioBasico(LocalDate.now(), usuarioBasico2, Concepto.VINCHUCA_GUASAYANA,muestra);
+		Opinion opinionBasica3 = new OpinionUsuarioBasico(LocalDate.now(), usuarioBasico3, Concepto.IMAGEN_POCO_CLARA,muestra);
 		
 		// Exercise
-		Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
+		//Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
 		muestra.recibirOpinion(opinionBasica1);
 		muestra.recibirOpinion(opinionBasica2);
 		muestra.recibirOpinion(opinionBasica3);
@@ -220,13 +226,15 @@ class MuestraTest {
 		Usuario usuarioBasico1 = new Usuario("DaVinchu", new Basico(), new ArrayList<>(), new ArrayList<>());
 		Usuario usuarioExperto1 = new Usuario("Vincho", new Experto(), new ArrayList<>(), new ArrayList<>());
 		Usuario usuarioExperto2 = new Usuario("Vincha", new Experto(), new ArrayList<>(), new ArrayList<>());
-			
-		Opinion opinionBasica1 = new OpinionUsuarioBasico(LocalDate.now(), usuarioBasico1, Concepto.VINCHUCA_GUASAYANA);
-		Opinion opinionExperta1 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto1, Concepto.CHINCHE_FOLIADA);
-		Opinion opinionExperta2 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto2, Concepto.IMAGEN_POCO_CLARA);
+		
+		Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
+		
+		Opinion opinionBasica1 = new OpinionUsuarioBasico(LocalDate.now(), usuarioBasico1, Concepto.VINCHUCA_GUASAYANA,muestra);
+		Opinion opinionExperta1 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto1, Concepto.CHINCHE_FOLIADA,muestra);
+		Opinion opinionExperta2 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto2, Concepto.IMAGEN_POCO_CLARA,muestra);
 		
 		// Exercise
-		Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
+		//Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
 		muestra.recibirOpinion(opinionBasica1);
 		muestra.recibirOpinion(opinionExperta1);
 		muestra.recibirOpinion(opinionExperta2);
@@ -246,12 +254,15 @@ class MuestraTest {
 		Usuario usuarioExperto1 = new Usuario("Vincho", new Experto(), new ArrayList<>(), new ArrayList<>());
 		Usuario usuarioExperto2 = new Usuario("Vincha", new Experto(), new ArrayList<>(), new ArrayList<>());
 			
-		Opinion opinionBasica1 = new OpinionUsuarioBasico(LocalDate.now(), usuarioBasico1, Concepto.VINCHUCA_GUASAYANA);
-		Opinion opinionExperta1 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto1, Concepto.CHINCHE_FOLIADA);
-		Opinion opinionExperta2 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto2, Concepto.CHINCHE_FOLIADA);
-		
-		// Exercise
+		//Opinion opinionBasica1 = new OpinionUsuarioBasico(LocalDate.now(), usuarioBasico1, Concepto.VINCHUCA_GUASAYANA);
+		//Opinion opinionExperta1 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto1, Concepto.CHINCHE_FOLIADA);
+		//Opinion opinionExperta2 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto2, Concepto.CHINCHE_FOLIADA);
 		Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
+		Opinion opinionBasica1 = new OpinionUsuarioBasico(LocalDate.now(), usuarioBasico1, Concepto.VINCHUCA_GUASAYANA,muestra);
+		Opinion opinionExperta1 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto1, Concepto.CHINCHE_FOLIADA,muestra);
+		Opinion opinionExperta2 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto2, Concepto.CHINCHE_FOLIADA,muestra);
+		// Exercise
+		//Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
 		muestra.recibirOpinion(opinionBasica1);
 		muestra.recibirOpinion(opinionExperta1);
 		muestra.recibirOpinion(opinionExperta2);

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ar.edu.unq.integrador.concepto.Concepto;
+import ar.edu.unq.integrador.muestra.Muestra;
 import ar.edu.unq.integrador.usuario.Usuario;
 
 import static org.mockito.Mockito.*;
@@ -24,14 +25,16 @@ class OpinionTest {
 		LocalDate fecha = mock(LocalDate.class);
 		Usuario autor = mock(Usuario.class);
 		Concepto concepto = mock(Concepto.class);
+		Muestra muestra = mock(Muestra.class);
 		
 		// Exercise
-		Opinion opinion = new OpinionUsuarioBasico(fecha, autor, concepto);
+		Opinion opinion = new OpinionUsuarioBasico(fecha, autor, concepto, muestra);
 		
 		// Verify
 		assertEquals(fecha, opinion.getFecha());
 		assertEquals(autor, opinion.getAutor());
-		assertEquals(concepto, opinion.getConcepto());	
+		assertEquals(concepto, opinion.getConcepto());
+		assertEquals(muestra, opinion.getMuestraOpinada());
 	}
 	
 	@Test
@@ -40,13 +43,15 @@ class OpinionTest {
 		LocalDate fecha = mock(LocalDate.class);
 		Usuario autor = mock(Usuario.class);
 		Concepto concepto = mock(Concepto.class);
+		Muestra muestra = mock(Muestra.class);
 		
 		// Exercise
-		Opinion opinion = new OpinionUsuarioExperto(fecha, autor, concepto);
+		Opinion opinion = new OpinionUsuarioExperto(fecha, autor, concepto,muestra);
 		
 		// Verify
 		assertEquals(fecha, opinion.getFecha());
 		assertEquals(autor, opinion.getAutor());
-		assertEquals(concepto, opinion.getConcepto());	
+		assertEquals(concepto, opinion.getConcepto());
+		assertEquals(muestra, opinion.getMuestraOpinada());
 	}
 }

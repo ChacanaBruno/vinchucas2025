@@ -99,4 +99,8 @@ public class Muestra {
 	public Concepto resultadoActual() {
 		return this.getEstadoMuestra().resultadoActual(this);	
 	}
+	
+	public boolean estaVerificada() {
+		return this.getEstadoMuestra().esVerificada();
+	}
 }

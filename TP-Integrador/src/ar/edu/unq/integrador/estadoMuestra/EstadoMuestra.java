@@ -7,4 +7,5 @@ import ar.edu.unq.integrador.opinion.Opinion;
 public interface EstadoMuestra {
 	void recibirOpinion(Opinion o, Muestra m);
 	Concepto resultadoActual(Muestra m);
+	boolean esVerificada();
 }

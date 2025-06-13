@@ -17,10 +17,20 @@ public class Experto implements Categoria {
 	// Metodos
 	@Override
 	public void opinarSobreMuestra(Usuario u, Concepto c, Muestra m) {
-		Opinion opinionUsuarioExperto = new OpinionUsuarioExperto(LocalDate.now(), u, c);
+		Opinion opinionUsuarioExperto = new OpinionUsuarioExperto(LocalDate.now(), u, c,m);
 		
 		m.recibirOpinion(opinionUsuarioExperto);
 		u.registrarOpinionEnHistorial(opinionUsuarioExperto);
+	}
+
+	@Override
+	public void promoverAExperto(Usuario u) {
+		throw new RuntimeException("El usuario ya es Experto");	
+	}
+
+	@Override
+	public void degradarABasico(Usuario u) {
+		u.setCategoria(new Basico());		
 	};
 	
 	

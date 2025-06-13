@@ -49,6 +49,11 @@ public class EnEvaluacion implements EstadoMuestra {
 //			                .getKey();
 //		}
 	}
+
+	@Override
+	public boolean esVerificada() {
+		return false;
+	}
 	
 	
 	
