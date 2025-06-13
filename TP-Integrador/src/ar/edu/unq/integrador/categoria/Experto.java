@@ -20,6 +20,7 @@ public class Experto implements Categoria {
 		Opinion opinionUsuarioExperto = new OpinionUsuarioExperto(LocalDate.now(), u, c);
 		
 		m.recibirOpinion(opinionUsuarioExperto);
+		u.registrarOpinionEnHistorial(opinionUsuarioExperto);
 	};
 	
 	

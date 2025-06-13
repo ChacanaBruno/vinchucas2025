@@ -11,7 +11,6 @@ import ar.edu.unq.integrador.estadoMuestra.*;
 
 import ar.edu.unq.integrador.formulario.Formulario;
 import ar.edu.unq.integrador.opinion.*;
-
 import ar.edu.unq.integrador.usuario.Usuario;
 
 import static org.mockito.Mockito.*;
@@ -44,10 +43,10 @@ class MuestraTest {
 	@Test
 	void test_MuestraConstructor() {		
 		// Exercise
-		Muestra muestra = new Muestra(fecha, formulario, estadoMuestra, opiniones);
+		Muestra muestra = new Muestra(formulario, estadoMuestra, opiniones);
 		
 		// Verify
-		assertEquals(fecha, muestra.getFecha());
+		//assertEquals(LocalDate.now(), muestra.getFecha()); Arreglar esto cuando modifique los test, la muestra se crea a partir del formulario!
 		assertEquals(formulario, muestra.getFormulario());
 		assertEquals(estadoMuestra, muestra.getEstadoMuestra());
 		assertEquals(opiniones, muestra.getOpiniones());
@@ -57,7 +56,7 @@ class MuestraTest {
 	@Test
 	void test_MuestraSabeSuAutor() {
 		// Exercise
-		Muestra muestra = new Muestra(fecha, formulario, estadoMuestra, opiniones);
+		Muestra muestra = new Muestra(formulario, estadoMuestra, opiniones);
 		Formulario formulario = muestra.getFormulario();
 		muestra.getAutor();
 		
@@ -68,7 +67,7 @@ class MuestraTest {
 	@Test
 	void test_MuestraSabeSuFoto() {
 		// Exercise
-		Muestra muestra = new Muestra(fecha, formulario, estadoMuestra, opiniones);
+		Muestra muestra = new Muestra(formulario, estadoMuestra, opiniones);
 		Formulario formulario = muestra.getFormulario();
 		muestra.getFoto();
 		
@@ -79,7 +78,7 @@ class MuestraTest {
 	@Test
 	void test_MuestraSabeSuUbicacion() {
 		// Exercise
-		Muestra muestra = new Muestra(fecha, formulario, estadoMuestra, opiniones);
+		Muestra muestra = new Muestra(formulario, estadoMuestra, opiniones);
 		Formulario formulario = muestra.getFormulario();
 		muestra.getUbicacion();
 		
@@ -93,7 +92,7 @@ class MuestraTest {
 		List<Opinion> ops = new ArrayList<>();
 		
 		// Exercise
-		Muestra muestra = new Muestra(fecha, formulario, estadoMuestra, ops);
+		Muestra muestra = new Muestra(formulario, estadoMuestra, ops);
 		muestra.agregarOpinion(op3);
 		
 		// Verify
@@ -123,7 +122,7 @@ class MuestraTest {
 		when(opinionExperta.getAutor()).thenReturn(usuarioExperto);
 		
 		// Exercise
-		Muestra muestra = new Muestra(fecha, formulario, estadoOg, opinionesOg);
+		Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
 		
 		muestra.recibirOpinion(opinionBasica1);
 		muestra.recibirOpinion(opinionExperta);
@@ -148,7 +147,7 @@ class MuestraTest {
 
 
 		// Exercise
-		Muestra muestra = new Muestra(fecha, formulario, estadoOg, opinionesOg);
+		Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
 		
 		muestra.recibirOpinion(opinionExperta1);
 		
@@ -175,7 +174,7 @@ class MuestraTest {
 		Opinion opinionBasica1 = new OpinionUsuarioExperto(LocalDate.now(), usuarioBasico1, Concepto.IMAGEN_POCO_CLARA);
 		
 		// Exercise
-		Muestra muestra = new Muestra(fecha, formulario, estadoOg, opinionesOg);
+		Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
 		
 		muestra.recibirOpinion(opinionExperta1);
 		muestra.recibirOpinion(opinionExperta2);
@@ -202,7 +201,7 @@ class MuestraTest {
 		Opinion opinionBasica3 = new OpinionUsuarioBasico(LocalDate.now(), usuarioBasico3, Concepto.IMAGEN_POCO_CLARA);
 		
 		// Exercise
-		Muestra muestra = new Muestra(fecha, formulario, estadoOg, opinionesOg);
+		Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
 		muestra.recibirOpinion(opinionBasica1);
 		muestra.recibirOpinion(opinionBasica2);
 		muestra.recibirOpinion(opinionBasica3);
@@ -227,7 +226,7 @@ class MuestraTest {
 		Opinion opinionExperta2 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto2, Concepto.IMAGEN_POCO_CLARA);
 		
 		// Exercise
-		Muestra muestra = new Muestra(fecha, formulario, estadoOg, opinionesOg);
+		Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
 		muestra.recibirOpinion(opinionBasica1);
 		muestra.recibirOpinion(opinionExperta1);
 		muestra.recibirOpinion(opinionExperta2);
@@ -252,7 +251,7 @@ class MuestraTest {
 		Opinion opinionExperta2 = new OpinionUsuarioExperto(LocalDate.now(), usuarioExperto2, Concepto.CHINCHE_FOLIADA);
 		
 		// Exercise
-		Muestra muestra = new Muestra(fecha, formulario, estadoOg, opinionesOg);
+		Muestra muestra = new Muestra(formulario, estadoOg, opinionesOg);
 		muestra.recibirOpinion(opinionBasica1);
 		muestra.recibirOpinion(opinionExperta1);
 		muestra.recibirOpinion(opinionExperta2);

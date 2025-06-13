@@ -20,6 +20,7 @@ public class Basico implements Categoria{
 		Opinion opinionUsuarioBasico = new OpinionUsuarioBasico(LocalDate.now(), u, c);
 		
 		m.recibirOpinion(opinionUsuarioBasico);
+		u.registrarOpinionEnHistorial(opinionUsuarioBasico);
 	};
 	
 }

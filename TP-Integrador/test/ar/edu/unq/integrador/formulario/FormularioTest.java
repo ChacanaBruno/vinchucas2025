@@ -11,6 +11,8 @@ import ar.edu.unq.integrador.usuario.Usuario;
 
 import static org.mockito.Mockito.*;
 
+import java.time.LocalDate;
+
 class FormularioTest {
 
 	@BeforeEach
@@ -33,6 +35,7 @@ class FormularioTest {
 		assertEquals(concepto, formulario.getConcepto());
 		assertEquals(ubicacion, formulario.getUbicacion());
 		assertEquals(autor, formulario.getAutor());
+		assertEquals(LocalDate.now(), formulario.getFechaCreacion());
 	}
 
 }
