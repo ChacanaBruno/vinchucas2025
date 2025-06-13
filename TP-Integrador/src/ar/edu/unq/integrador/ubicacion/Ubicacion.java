@@ -3,6 +3,8 @@ package ar.edu.unq.integrador.ubicacion;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import ar.edu.unq.integrador.muestra.Muestra;
+
 public class Ubicacion {
 	// Atributos
 	private double latitud; // grados en decimales, representa norte-sur
@@ -65,11 +67,16 @@ public class Ubicacion {
 //	    return Math.round(distancia * 100.0) / 100.0; // redondeo a 2 decimales para que el numero no sea enorme
 	}
 
-	public List<Ubicacion> ubicacionesAMenosDeXKilometros(double d, List<Ubicacion> us) {
+	public List<Ubicacion> ubicacionesAMenosDeXKilometros(double km, List<Ubicacion> us) {
 		return us.stream()
-				 .filter(u -> (this.distanciaALaUbicacion(u)) <= d)
+				 .filter(u -> (this.distanciaALaUbicacion(u)) <= km)
 				 .collect(Collectors.toList()); 
 	}
 	
+	public List<Muestra> muestrasAMenosDeXKilometros(double km, List<Muestra> ms) {
+		return ms.stream()
+				 .filter(m -> (this.distanciaALaUbicacion(m.getUbicacion())) <= km) 				 
+				 .collect(Collectors.toList());
+	}
 	
 }

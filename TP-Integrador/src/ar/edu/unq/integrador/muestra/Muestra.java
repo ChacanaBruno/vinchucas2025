@@ -29,9 +29,9 @@ public class Muestra {
 		return this.getFormulario().getFechaCreacion();
 	}
 	
-	public void setFecha(LocalDate f) {
-		this.getFormulario().setFechaCreacion(f);
-	}
+//	public void setFecha(LocalDate f) {
+//		this.getFormulario().setFechaCreacion(f);
+//	}
 	
 	public Formulario getFormulario() {
 		return formulario;
