@@ -29,6 +29,7 @@ public class EnEvaluacion implements EstadoMuestra {
 		
 		if (m.hayConsensoEntreExpertos()) {
 			m.setEstadoMuestra(new Verificada());
+			// notificar a la zona que se verificó la muestra
 		}	
 	}
 

@@ -78,12 +78,12 @@ public class Usuario {
 		return muestra;
 	}
 	
-	public void enviarMuestra(Muestra m) { // no envia la muestra a ningun lado, la registra en sus "envios"...
+	private void enviarMuestra(Muestra m) { // no envia la muestra a ningun lado, la registra en sus "envios"...
 		this.getMuestrasEnviadas().add(m);
 	}
 	
 	public void opinarSobreMuestra(Concepto concepto, Muestra muestra) {
-		this.getCategoria().opinarSobreMuestra(this, concepto, muestra);
+		this.getCategoria().opinarSobreMuestra(this, concepto, muestra); 
 	}
 	
 	public void registrarOpinionEnHistorial(Opinion o) {

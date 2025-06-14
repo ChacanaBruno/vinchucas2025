@@ -30,7 +30,7 @@ class UsuarioTest {
 		String nombre = "VinchucaKiller";
 		Categoria categoria = mock(Categoria.class);
 		List<Muestra> muestrasEnviadas = new ArrayList<>();
-		List<Opinion> opinionesRealizadas = new ArrayList<>();
+		List<Opinion> opinionesRealizadas = new ArrayList<>(); 
 		
 		// Exercise
 		Usuario usuario = new Usuario(nombre, categoria, muestrasEnviadas, opinionesRealizadas);

@@ -55,7 +55,9 @@ public abstract class Opinion {
 	}
 
 	// Metodos
-	public abstract boolean esOpinionExperta();
+	public boolean esOpinionExperta() {
+		return false;
+	}
 	
 	
 	

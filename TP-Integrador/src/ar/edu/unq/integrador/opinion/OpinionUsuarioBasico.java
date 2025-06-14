@@ -15,9 +15,6 @@ public class OpinionUsuarioBasico extends Opinion {
 	}
 	
 	// Metodos
-	@Override
-	public boolean esOpinionExperta() {
-		return false;
-	}
+
 
 }

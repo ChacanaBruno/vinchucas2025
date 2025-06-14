@@ -11,7 +11,7 @@ public class Ubicacion {
 	private double longitud; // grados en decimales, representa este-oeste
 	
 	// Constructor
-	public Ubicacion(double latitud, double longitud) {
+	public Ubicacion(double latitud, double longitud) { 
 		this.setLatitud(latitud);
 		this.setLongitud(longitud);
 	}
