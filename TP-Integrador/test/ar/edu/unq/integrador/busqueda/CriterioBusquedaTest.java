@@ -120,5 +120,107 @@ public class CriterioBusquedaTest {
 
         assertFalse(filtro.cumple(muestraMock));
     }
+    
+	@Test
+	public void testFiltroFechaCreacionAnteriorADevuelveTrue() {
+		Muestra muestra = mock(Muestra.class);
+		LocalDate fechaFiltro = LocalDate.of(2024, 1, 1);
+		LocalDate fechaMuestra = LocalDate.of(2023, 12, 31);
+
+		when(muestra.getFecha()).thenReturn(fechaMuestra);
+
+		FiltroDeBusqueda filtro = new FiltroFechaCreacionAnteriorA(fechaFiltro);
+
+		assertTrue(filtro.cumple(muestra));
+	}
+
+	@Test
+	public void testFiltroFechaCreacionAnteriorADevuelveFalse() {
+		Muestra muestra = mock(Muestra.class);
+		LocalDate fechaFiltro = LocalDate.of(2024, 1, 1);
+		LocalDate fechaMuestra = LocalDate.of(2024, 1, 2);
+
+		when(muestra.getFecha()).thenReturn(fechaMuestra);
+
+		FiltroDeBusqueda filtro = new FiltroFechaCreacionAnteriorA(fechaFiltro);
+
+		assertFalse(filtro.cumple(muestra));
+	}
+
+	@Test
+	public void testFiltroFechaCreacionIgualDevuelveTrue() {
+		Muestra muestra = mock(Muestra.class);
+		LocalDate fecha = LocalDate.of(2024, 5, 20);
+
+		when(muestra.getFecha()).thenReturn(fecha);
+
+		FiltroDeBusqueda filtro = new FiltroFechaCreacionIgual(fecha);
+
+		assertTrue(filtro.cumple(muestra));
+	}
+
+	@Test
+	public void testFiltroFechaCreacionIgualDevuelveFalse() {
+		Muestra muestra = mock(Muestra.class);
+		LocalDate fechaFiltro = LocalDate.of(2024, 5, 20);
+		LocalDate fechaMuestra = LocalDate.of(2024, 5, 21);
+
+		when(muestra.getFecha()).thenReturn(fechaMuestra);
+
+		FiltroDeBusqueda filtro = new FiltroFechaCreacionIgual(fechaFiltro);
+
+		assertFalse(filtro.cumple(muestra));
+	}
+
+	@Test
+	public void testFiltroFechaUltimaVotacionIgualDevuelveTrue() {
+		Muestra muestra = mock(Muestra.class);
+		LocalDate fecha = LocalDate.of(2024, 6, 15);
+
+		when(muestra.getFechaUltimaVotacion()).thenReturn(fecha);
+
+		FiltroDeBusqueda filtro = new FiltroFechaUltimaVotacionIgual(fecha);
+
+		assertTrue(filtro.cumple(muestra));
+	}
+
+	@Test
+	public void testFiltroFechaUltimaVotacionIgualDevuelveFalse() {
+		Muestra muestra = mock(Muestra.class);
+		LocalDate fechaFiltro = LocalDate.of(2024, 6, 15);
+		LocalDate fechaMuestra = LocalDate.of(2024, 6, 14);
+
+		when(muestra.getFechaUltimaVotacion()).thenReturn(fechaMuestra);
+
+		FiltroDeBusqueda filtro = new FiltroFechaUltimaVotacionIgual(fechaFiltro);
+
+		assertFalse(filtro.cumple(muestra));
+	}
+
+	@Test
+	public void testFiltroFechaUltimaVotacionPosteriorADevuelveTrue() {
+		Muestra muestra = mock(Muestra.class);
+		LocalDate fechaFiltro = LocalDate.of(2024, 1, 1);
+		LocalDate fechaMuestra = LocalDate.of(2024, 2, 1);
+
+		when(muestra.getFechaUltimaVotacion()).thenReturn(fechaMuestra);
+
+		FiltroDeBusqueda filtro = new FiltroFechaUltimaVotacionPosteriorA(fechaFiltro);
+
+		assertTrue(filtro.cumple(muestra));
+	}
+
+	@Test
+	public void testFiltroFechaUltimaVotacionPosteriorADevuelveFalse() {
+		Muestra muestra = mock(Muestra.class);
+		LocalDate fechaFiltro = LocalDate.of(2024, 2, 1);
+		LocalDate fechaMuestra = LocalDate.of(2024, 1, 1);
+
+		when(muestra.getFechaUltimaVotacion()).thenReturn(fechaMuestra);
+
+		FiltroDeBusqueda filtro = new FiltroFechaUltimaVotacionPosteriorA(fechaFiltro);
+
+		assertFalse(filtro.cumple(muestra));
+	}
 
 }
