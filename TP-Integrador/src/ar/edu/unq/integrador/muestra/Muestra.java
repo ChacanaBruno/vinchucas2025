@@ -16,38 +16,43 @@ public class Muestra {
 	private Formulario formulario;
 	private EstadoMuestra estadoMuestra;
 	private List<Opinion> opiniones;
-	
+
 	// Constructor
 	public Muestra(Formulario formulario, EstadoMuestra estadoMuestra, List<Opinion> opiniones) {
 		this.setFormulario(formulario);
 		this.setEstadoMuestra(estadoMuestra);
 		this.setOpiniones(opiniones);
 	}
-	
+
 	// Accessors
 	public LocalDate getFecha() {
 		return this.getFormulario().getFechaCreacion();
 	}
-	
+
 //	public void setFecha(LocalDate f) {
 //		this.getFormulario().setFechaCreacion(f);
 //	}
-	
+
 	public Formulario getFormulario() {
 		return formulario;
 	}
+
 	public void setFormulario(Formulario formulario) {
 		this.formulario = formulario;
 	}
+
 	public EstadoMuestra getEstadoMuestra() {
 		return estadoMuestra;
 	}
+
 	public void setEstadoMuestra(EstadoMuestra estadoMuestra) {
 		this.estadoMuestra = estadoMuestra;
 	}
+
 	public List<Opinion> getOpiniones() {
 		return opiniones;
 	}
+
 	public void setOpiniones(List<Opinion> opiniones) {
 		this.opiniones = opiniones;
 	}
@@ -58,7 +63,7 @@ public class Muestra {
 	}
 
 	public String getFoto() {
-		return this.getFormulario().getFoto();		
+		return this.getFormulario().getFoto();
 	}
 
 	public Ubicacion getUbicacion() {
@@ -68,39 +73,40 @@ public class Muestra {
 	public void agregarOpinion(Opinion op) {
 		Usuario autor = op.getAutor();
 		List<Opinion> opiniones = this.getOpiniones();
-		
-        if (elUsuarioYaOpino(autor)){
-        	throw new RuntimeException("El usuario ya registra una opinion en la muestra");
-        } else {        	
-        	opiniones.add(op);
-        }	
+
+		if (elUsuarioYaOpino(autor)) {
+			throw new RuntimeException("El usuario ya registra una opinion en la muestra");
+		} else {
+			opiniones.add(op);
+		}
 	}
 
 	public boolean elUsuarioYaOpino(Usuario usuario) {
 		List<Opinion> opiniones = this.getOpiniones();
 		return opiniones.stream().anyMatch(o -> o.getAutor().equals(usuario));
 	}
-	
+
 	public void recibirOpinion(Opinion o) {
 		this.getEstadoMuestra().recibirOpinion(o, this);
 	}
 
 	public boolean hayConsensoEntreExpertos() {
 		List<Opinion> opiniones = this.getOpiniones();
-		
-	    return opiniones.stream()
-	                    .filter(o -> o.esOpinionExperta())
-	                    .collect(Collectors.groupingBy(o -> o.getConcepto(), Collectors.counting()))
-	                    .values()
-	                    .stream()
-	                    .anyMatch(count -> count >= 2);
+
+		return opiniones.stream().filter(o -> o.esOpinionExperta())
+				.collect(Collectors.groupingBy(o -> o.getConcepto(), Collectors.counting())).values().stream()
+				.anyMatch(count -> count >= 2);
 	}
-	
+
 	public Concepto resultadoActual() {
-		return this.getEstadoMuestra().resultadoActual(this);	
+		return this.getEstadoMuestra().resultadoActual(this);
 	}
-	
+
 	public boolean estaVerificada() {
 		return this.getEstadoMuestra().esVerificada();
+	}
+
+	public LocalDate getFechaUltimaVotacion() {
+		return this.getOpiniones().stream().map(Opinion::getFecha).max(LocalDate::compareTo).orElse(null);
 	}
 }
