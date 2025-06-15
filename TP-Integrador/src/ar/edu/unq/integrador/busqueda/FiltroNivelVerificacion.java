@@ -7,7 +7,7 @@ public class FiltroNivelVerificacion implements FiltroDeBusqueda {
 
 	@Override
 	public boolean cumple(Muestra muestra) {
-		return muestra.getEstadoMuestra().esVerificada();
+		return muestra.estaVerificada();
 	}
 
 }
