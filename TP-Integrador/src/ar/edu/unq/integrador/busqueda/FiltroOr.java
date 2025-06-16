@@ -4,11 +4,11 @@ import java.util.List;
 
 import ar.edu.unq.integrador.muestra.Muestra;
 
-public class FiltroOr implements FiltroDeBusqueda {
-	private List<FiltroDeBusqueda> filtros;
+public class FiltroOr extends FiltroBoolean {
 
-	public FiltroOr(List<FiltroDeBusqueda> filtro) {
-		this.filtros = filtro;
+	public FiltroOr(List<FiltroDeBusqueda> filtros) {
+		super(filtros);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
