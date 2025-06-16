@@ -23,6 +23,20 @@ public class CriterioBusquedaTest {
     public void setUp() {
         muestraMock = mock(Muestra.class);
     }
+    
+    @Test
+    void test_CriterioBusquedaAgregaFiltro() {
+    	// Setup
+    	FiltroDeBusqueda filtro = mock(FiltroDeBusqueda.class);
+    	CriterioBusqueda criterio = new CriterioBusqueda(new ArrayList<>());
+    	
+    	// Exercise
+    	criterio.agregarFiltro(filtro);
+    	
+    	// Verify
+    	assertEquals(criterio.getFiltros().size(), 1);
+    	
+    }
 
     @Test
     public void testCriterioCumpleConUnFiltroMock() {

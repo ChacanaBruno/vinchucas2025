@@ -7,14 +7,22 @@ import ar.edu.unq.integrador.muestra.Muestra;
 
 public class CriterioBusqueda {
 
-	private List<FiltroDeBusqueda> filtros = new ArrayList<>();
+	public List<FiltroDeBusqueda> getFiltros() {
+		return filtros;
+	}
 
-	public CriterioBusqueda(List<FiltroDeBusqueda> filtros) {
+	public void setFiltros(List<FiltroDeBusqueda> filtros) {
 		this.filtros = filtros;
 	}
 
+	private List<FiltroDeBusqueda> filtros = new ArrayList<>();
+
+	public CriterioBusqueda(List<FiltroDeBusqueda> filtros) {
+		this.setFiltros(filtros);
+	}
+
 	public CriterioBusqueda agregarFiltro(FiltroDeBusqueda filtro) {
-		filtros.add(filtro);
+		this.getFiltros().add(filtro);
 		return this;
 	}
 

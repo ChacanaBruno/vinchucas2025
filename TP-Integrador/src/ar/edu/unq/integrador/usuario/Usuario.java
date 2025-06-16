@@ -74,11 +74,11 @@ public class Usuario {
 		Muestra muestra = new Muestra(f, estadoInicial, opiniones);
 		
 		this.opinarSobreMuestra(concepto, muestra); // esto ya guarda la opinion en el historial del usuario
-		this.enviarMuestra(muestra); // y esto la guarda en su historial de muestras creadas por el mismo
+		this.registrarMuestra(muestra); // y esto la guarda en su historial de muestras creadas por el mismo
 		return muestra;
 	}
 	
-	private void enviarMuestra(Muestra m) { // no envia la muestra a ningun lado, la registra en sus "envios"...
+	private void registrarMuestra(Muestra m) { // no envia la muestra a ningun lado, la registra en sus "envios"...
 		this.getMuestrasEnviadas().add(m);
 	}
 	

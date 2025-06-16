@@ -11,7 +11,25 @@ import ar.edu.unq.integrador.muestra.Muestra;
 import ar.edu.unq.integrador.ubicacion.Ubicacion;
 
 public class ZonaDeCoberturaTest {
-
+	
+	@Test
+	void test_ZonaDeCoberturaConstructor() {
+		// Setup
+		Ubicacion epicentro = mock(Ubicacion.class);
+		double radioKm = 10;
+		String nombreIdentificador = "Pepe";
+		INotificador notificador = mock(INotificador.class);
+		
+		// Exercise
+		ZonaDeCobertura zona = new ZonaDeCobertura(nombreIdentificador, epicentro, radioKm, notificador);
+		
+		// Verify
+		assertEquals(nombreIdentificador, zona.getNombre());
+		assertEquals(epicentro, zona.getEpicentro());
+		assertEquals(radioKm, zona.getRadioKm());
+		assertEquals(notificador, zona.getNotificador());
+	}
+	
 	@Test
 	public void testSeSolapaConOtraZona() {
 		Ubicacion ubicacion1 = mock(Ubicacion.class);
