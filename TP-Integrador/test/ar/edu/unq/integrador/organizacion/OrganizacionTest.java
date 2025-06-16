@@ -1,5 +1,6 @@
 package ar.edu.unq.integrador.organizacion;
 
+import static org.junit.Assert.assertSame;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.Test;
@@ -64,4 +65,20 @@ public class OrganizacionTest {
 
 		verify(plugin).nuevoEvento(org, zona, muestra);
 	}
+	
+    @Test
+    public void testSetYGetPlugin() {
+        FuncionalidadExterna pluginMock = mock(FuncionalidadExterna.class);
+        Organizacion org = new Organizacion(mock(Ubicacion.class), mock(TipoOrganizacion.class), 100, pluginMock);
+
+        assertSame(pluginMock, org.getPlugin());
+
+        // Ahora seteamos otro plugin
+        FuncionalidadExterna otroPlugin = mock(FuncionalidadExterna.class);
+        org.setPlugin(otroPlugin);
+
+        assertSame(otroPlugin, org.getPlugin());
+    }
+
+
 }

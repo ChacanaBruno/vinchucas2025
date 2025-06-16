@@ -272,4 +272,39 @@ class MuestraTest {
 		assertEquals(muestra.resultadoActual(), Concepto.CHINCHE_FOLIADA);
 	}
 	
+    @Test
+    public void testGetFechaUltimaVotacion_devuelveLaFechaMasReciente() {
+        // Mocks
+        Opinion opinion1 = mock(Opinion.class);
+        Opinion opinion2 = mock(Opinion.class);
+        Opinion opinion3 = mock(Opinion.class);
+
+        // Fechas de ejemplo
+        LocalDate fecha1 = LocalDate.of(2023, 5, 10);
+        LocalDate fecha2 = LocalDate.of(2023, 7, 15);
+        LocalDate fecha3 = LocalDate.of(2023, 6, 1);
+
+        // Configuramos los mocks
+        when(opinion1.getFecha()).thenReturn(fecha1);
+        when(opinion2.getFecha()).thenReturn(fecha2);
+        when(opinion3.getFecha()).thenReturn(fecha3);
+
+        // Lista de opiniones
+        List<Opinion> opiniones = Arrays.asList(opinion1, opinion2, opinion3);
+
+        // Creamos la muestra con mocks para los otros atributos
+        Formulario formularioMock = mock(Formulario.class);
+        EstadoMuestra estadoMock = mock(EstadoMuestra.class);
+        Muestra muestra = new Muestra(formularioMock, estadoMock, opiniones);
+
+        // Ejecutamos y verificamos
+        assertEquals(fecha2, muestra.getFechaUltimaVotacion());
+    }
+
+    @Test
+    public void testGetFechaUltimaVotacion_conListaVaciaDevuelveNull() {
+        Muestra muestra = new Muestra(mock(Formulario.class), mock(EstadoMuestra.class), List.of());
+        assertNull(muestra.getFechaUltimaVotacion());
+    }
+	
 }
