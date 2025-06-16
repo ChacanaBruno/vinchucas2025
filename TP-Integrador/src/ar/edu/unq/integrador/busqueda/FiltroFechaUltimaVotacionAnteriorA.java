@@ -4,15 +4,15 @@ import java.time.LocalDate;
 
 import ar.edu.unq.integrador.muestra.Muestra;
 
-public class FiltroFechaUltimaVotacionAnteriorA implements FiltroDeBusqueda {
-    private LocalDate fecha;
+public class FiltroFechaUltimaVotacionAnteriorA extends FiltroFecha {
 
-    public FiltroFechaUltimaVotacionAnteriorA(LocalDate fecha) {
-        this.fecha = fecha;
-    }
+	public FiltroFechaUltimaVotacionAnteriorA(LocalDate fecha) {
+		super(fecha);
+		// TODO Auto-generated constructor stub
+	}
 
-    @Override
-    public boolean cumple(Muestra muestra) {
-        return muestra.getFechaUltimaVotacion().isBefore(fecha);
-    }
+	@Override
+	public boolean cumple(Muestra muestra) {
+		return muestra.getFechaUltimaVotacion().isBefore(fecha);
+	}
 }

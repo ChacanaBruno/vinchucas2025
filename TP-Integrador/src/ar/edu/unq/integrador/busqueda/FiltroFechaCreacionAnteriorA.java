@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 import ar.edu.unq.integrador.muestra.Muestra;
 
-public class FiltroFechaCreacionAnteriorA implements FiltroDeBusqueda {
-	private LocalDate fecha;
-
+public class FiltroFechaCreacionAnteriorA extends FiltroFecha {
+	
 	public FiltroFechaCreacionAnteriorA(LocalDate fecha) {
-		this.fecha = fecha;
+		super(fecha);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 import ar.edu.unq.integrador.muestra.Muestra;
 
-public class FiltroFechaUltimaVotacionIgual implements FiltroDeBusqueda {
-	private LocalDate fecha;
+public class FiltroFechaUltimaVotacionIgual extends FiltroFecha {
 
 	public FiltroFechaUltimaVotacionIgual(LocalDate fecha) {
-		this.fecha = fecha;
+		super(fecha);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
