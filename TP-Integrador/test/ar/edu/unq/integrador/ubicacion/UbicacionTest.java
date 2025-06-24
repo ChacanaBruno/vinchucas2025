@@ -36,7 +36,7 @@ class UbicacionTest {
 	@Test
 	void test_UnaUbicacionPuedeCalcularLaDistanciaEnKilometrosAOtraUbicacion() {
 		// Setup
-		Ubicacion ubicacion1 = new Ubicacion(-34.70937193975776, -58.2804081705572); // estacion de bernal
+		Ubicacion ubicacion1 = new Ubicacion(-34.70937193975776, -58.2804081705572); // estacion de bernal 
 		Ubicacion ubicacion2 = new Ubicacion(-34.70637371362339, -58.27837794516907); // unq
 		
 		// Exercise

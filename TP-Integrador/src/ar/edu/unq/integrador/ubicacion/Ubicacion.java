@@ -73,7 +73,7 @@ public class Ubicacion {
 		return RADIO_TIERRA_KM * c;
 //	    double distancia = RADIO_TIERRA_KM * c;
 //
-//	    return Math.round(distancia * 100.0) / 100.0; // redondeo a 2 decimales para que el numero no sea enorme
+//	    return Math.round(distancia * 100.0) / 100.0; // redondeo a 2 decimales para que el numero no tenga muchos decimales
 	}
 
 	public List<Ubicacion> ubicacionesAMenosDeXKilometros(double km, List<Ubicacion> us) {
