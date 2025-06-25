@@ -200,4 +200,113 @@ class UbicacionTest {
 	    // Verify
 	    assertTrue(resultado.containsAll(muestras));
 	}
+	
+	@Test
+	void test_TodasLasMuestrasEstanFueraDelRango() {
+	    // Setup
+	    Ubicacion origen = new Ubicacion(-34.706, -58.278);
+	    Usuario usuario = new Usuario("Dorean");
+
+	    Formulario f1 = new Formulario("Foto1", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7200, -58.2900), usuario);
+	    Muestra m1 = usuario.crearMuestra(f1);
+
+	    Formulario f2 = new Formulario("Foto2", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7210, -58.2910), usuario);
+	    Muestra m2 = usuario.crearMuestra(f2);
+
+	    Formulario f3 = new Formulario("Foto3", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7220, -58.2920), usuario);
+	    Muestra m3 = usuario.crearMuestra(f3);
+
+	    Formulario f4 = new Formulario("Foto4", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7230, -58.2930), usuario);
+	    Muestra m4 = usuario.crearMuestra(f4);
+
+	    Formulario f5 = new Formulario("Foto5", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7240, -58.2940), usuario);
+	    Muestra m5 = usuario.crearMuestra(f5);
+
+	    Formulario f6 = new Formulario("Foto6", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7250, -58.2950), usuario);
+	    Muestra m6 = usuario.crearMuestra(f6);
+
+	    Formulario f7 = new Formulario("Foto7", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7260, -58.2960), usuario);
+	    Muestra m7 = usuario.crearMuestra(f7);
+
+	    Formulario f8 = new Formulario("Foto8", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7270, -58.2970), usuario);
+	    Muestra m8 = usuario.crearMuestra(f8);
+
+	    Formulario f9 = new Formulario("Foto9", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7280, -58.2980), usuario);
+	    Muestra m9 = usuario.crearMuestra(f9);
+
+	    Formulario f10 = new Formulario("Foto10", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7290, -58.2990), usuario);
+	    Muestra m10 = usuario.crearMuestra(f10);
+
+	    Formulario f11 = new Formulario("Foto11", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7300, -58.3000), usuario);
+	    Muestra m11 = usuario.crearMuestra(f11);
+
+	    Formulario f12 = new Formulario("Foto12", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7310, -58.3010), usuario);
+	    Muestra m12 = usuario.crearMuestra(f12);
+
+	    Formulario f13 = new Formulario("Foto13", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7320, -58.3020), usuario);
+	    Muestra m13 = usuario.crearMuestra(f13);
+
+	    Formulario f14 = new Formulario("Foto14", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7330, -58.3030), usuario);
+	    Muestra m14 = usuario.crearMuestra(f14);
+
+	    Formulario f15 = new Formulario("Foto15", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7340, -58.3040), usuario);
+	    Muestra m15 = usuario.crearMuestra(f15);
+
+	    Formulario f16 = new Formulario("Foto16", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7350, -58.3050), usuario);
+	    Muestra m16 = usuario.crearMuestra(f16);
+
+	    Formulario f17 = new Formulario("Foto17", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7360, -58.3060), usuario);
+	    Muestra m17 = usuario.crearMuestra(f17);
+
+	    Formulario f18 = new Formulario("Foto18", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7370, -58.3070), usuario);
+	    Muestra m18 = usuario.crearMuestra(f18);
+
+	    Formulario f19 = new Formulario("Foto19", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7380, -58.3080), usuario);
+	    Muestra m19 = usuario.crearMuestra(f19);
+
+	    Formulario f20 = new Formulario("Foto20", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7390, -58.3090), usuario);
+	    Muestra m20 = usuario.crearMuestra(f20);
+
+	    Formulario f21 = new Formulario("Foto21", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7400, -58.3100), usuario);
+	    Muestra m21 = usuario.crearMuestra(f21);
+
+	    Formulario f22 = new Formulario("Foto22", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7410, -58.3110), usuario);
+	    Muestra m22 = usuario.crearMuestra(f22);
+
+	    Formulario f23 = new Formulario("Foto23", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7420, -58.3120), usuario);
+	    Muestra m23 = usuario.crearMuestra(f23);
+
+	    Formulario f24 = new Formulario("Foto24", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7430, -58.3130), usuario);
+	    Muestra m24 = usuario.crearMuestra(f24);
+
+	    Formulario f25 = new Formulario("Foto25", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7440, -58.3140), usuario);
+	    Muestra m25 = usuario.crearMuestra(f25);
+
+	    Formulario f26 = new Formulario("Foto26", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7450, -58.3150), usuario);
+	    Muestra m26 = usuario.crearMuestra(f26);
+
+	    Formulario f27 = new Formulario("Foto27", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7460, -58.3160), usuario);
+	    Muestra m27 = usuario.crearMuestra(f27);
+
+	    Formulario f28 = new Formulario("Foto28", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7470, -58.3170), usuario);
+	    Muestra m28 = usuario.crearMuestra(f28);
+
+	    Formulario f29 = new Formulario("Foto29", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7480, -58.3180), usuario);
+	    Muestra m29 = usuario.crearMuestra(f29);
+
+	    Formulario f30 = new Formulario("Foto30", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7490, -58.3190), usuario);
+	    Muestra m30 = usuario.crearMuestra(f30);
+
+	    List<Muestra> muestras = Arrays.asList(
+	        m1, m2, m3, m4, m5, m6, m7, m8, m9, m10,
+	        m11, m12, m13, m14, m15, m16, m17, m18, m19, m20,
+	        m21, m22, m23, m24, m25, m26, m27, m28, m29, m30
+	    );
+
+	    // Exercise
+	    List<Muestra> resultado = origen.muestrasAMenosDeXKilometros(1.0, muestras);
+
+	    // Verify
+	    assertTrue(resultado.isEmpty());
+	}
 }
