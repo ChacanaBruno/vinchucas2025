@@ -1,84 +1,96 @@
 package ar.edu.unq.integrador.organizacion;
 
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.Test;
-
+import ar.edu.unq.integrador.organizacion.*;
 import ar.edu.unq.integrador.muestra.Muestra;
+import ar.edu.unq.integrador.notificador.Evento;
 import ar.edu.unq.integrador.ubicacion.Ubicacion;
-import ar.edu.unq.integrador.zonaDeCobertura.ZonaDeCobertura;
-import ar.edu.unq.integrador.zonaDeCobertura.INotificador;
+import ar.edu.unq.integrador.zonaDeCobertura.copy.ZonaDeCobertura;
 
-public class OrganizacionTest {
+class OrganizacionTest {
 
-	@Test
-	public void testSubscribirseAZona() {
-		ZonaDeCobertura zona = mock(ZonaDeCobertura.class);
-		INotificador notificador = mock(INotificador.class);
-		when(zona.getNotificador()).thenReturn(notificador);
-
-		Organizacion org = new Organizacion(mock(Ubicacion.class), TipoOrganizacion.EDUCATIVA, 10,
-				mock(FuncionalidadExterna.class));
-
-		org.subscribirseAZona(zona);
-
-		verify(notificador).subscribir(org);
-	}
-
-	@Test
-	public void testDesubscribirseAZona() {
-		ZonaDeCobertura zona = mock(ZonaDeCobertura.class);
-		INotificador notificador = mock(INotificador.class);
-		when(zona.getNotificador()).thenReturn(notificador);
-
-		Organizacion org = new Organizacion(mock(Ubicacion.class), TipoOrganizacion.EDUCATIVA, 5,
-				mock(FuncionalidadExterna.class));
-
-		org.desubscribirseAZona(zona);
-
-		verify(notificador).desuscribir(org);
-	}
-
-	@Test
-	public void testRecibirNotificacionDeMuestra() {
-		FuncionalidadExterna plugin = mock(FuncionalidadExterna.class);
-		ZonaDeCobertura zona = mock(ZonaDeCobertura.class);
-		Muestra muestra = mock(Muestra.class);
-
-		Organizacion org = new Organizacion(mock(Ubicacion.class), TipoOrganizacion.EDUCATIVA, 20, plugin);
-
-		org.recibirNotifacionDeMuestra(zona, muestra);
-
-		verify(plugin).nuevoEvento(org, zona, muestra);
-	}
-
-	@Test
-	public void testRecibirNotificacionDeMuestraValidada() {
-		FuncionalidadExterna plugin = mock(FuncionalidadExterna.class);
-		ZonaDeCobertura zona = mock(ZonaDeCobertura.class);
-		Muestra muestra = mock(Muestra.class);
-
-		Organizacion org = new Organizacion(mock(Ubicacion.class), TipoOrganizacion.EDUCATIVA, 20, plugin);
-
-		org.recibirNotifacionDeMuestraValidada(zona, muestra);
-
-		verify(plugin).nuevoEvento(org, zona, muestra);
-	}
-	
     @Test
-    public void testSetYGetPlugin() {
-        FuncionalidadExterna pluginMock = mock(FuncionalidadExterna.class);
-        Organizacion org = new Organizacion(mock(Ubicacion.class), mock(TipoOrganizacion.class), 100, pluginMock);
+    void testConstructorConPlugins() {
+        Ubicacion ubicacion = mock(Ubicacion.class);
+        TipoOrganizacion tipo = mock(TipoOrganizacion.class);
+        FuncionalidadExterna pluginCarga = mock(FuncionalidadExterna.class);
+        FuncionalidadExterna pluginValidacion = mock(FuncionalidadExterna.class);
 
-        assertSame(pluginMock, org.getPlugin());
+        Organizacion org = new Organizacion(ubicacion, tipo, 5, pluginCarga, pluginValidacion);
 
-        // Ahora seteamos otro plugin
-        FuncionalidadExterna otroPlugin = mock(FuncionalidadExterna.class);
-        org.setPlugin(otroPlugin);
-
-        assertSame(otroPlugin, org.getPlugin());
+        assertEquals(ubicacion, org.getUbicacion());
+        assertEquals(tipo, org.getOrganizacion());
+        assertEquals(5, org.getPersonas());
+        assertEquals(pluginCarga, org.getPluginCarga());
+        assertEquals(pluginValidacion, org.getPluginValidacion());
     }
 
+    @Test
+    void testConstructorSinPlugins() {
+        Ubicacion ubicacion = mock(Ubicacion.class);
+        TipoOrganizacion tipo = mock(TipoOrganizacion.class);
 
+        Organizacion org = new Organizacion(ubicacion, tipo, 10);
+
+        assertEquals(ubicacion, org.getUbicacion());
+        assertEquals(tipo, org.getOrganizacion());
+        assertEquals(10, org.getPersonas());
+        assertNull(org.getPluginCarga());
+        assertNull(org.getPluginValidacion());
+    }
+
+    @Test
+    void testProcesarEvento_noEsVerificacion() {
+        Organizacion org = new Organizacion(mock(Ubicacion.class), mock(TipoOrganizacion.class), 3,
+            mock(FuncionalidadExterna.class), mock(FuncionalidadExterna.class));
+
+        Evento evento = mock(Evento.class);
+        ZonaDeCobertura zona = mock(ZonaDeCobertura.class);
+        Muestra muestra = mock(Muestra.class);
+
+        when(evento.esVerificacion()).thenReturn(false);
+        when(evento.getZona()).thenReturn(zona);
+        when(evento.getMuestra()).thenReturn(muestra);
+
+        // Ejecutar
+        org.procesarEvento(evento);
+
+        // Verificar que se llamó a pluginCarga.nuevoEvento
+        verify(org.getPluginCarga(), times(1)).nuevoEvento(org, zona, muestra);
+
+        // pluginValidacion no debería ser llamado
+        verify(org.getPluginValidacion(), never()).nuevoEvento(any(), any(), any());
+    }
+
+    @Test
+    void testProcesarEvento_esVerificacion() {
+        Organizacion org = new Organizacion(mock(Ubicacion.class), mock(TipoOrganizacion.class), 3,
+            mock(FuncionalidadExterna.class), mock(FuncionalidadExterna.class));
+
+        Evento evento = mock(Evento.class);
+        ZonaDeCobertura zona = mock(ZonaDeCobertura.class);
+        Muestra muestra = mock(Muestra.class);
+
+        when(evento.esVerificacion()).thenReturn(true);
+        when(evento.getZona()).thenReturn(zona);
+        when(evento.getMuestra()).thenReturn(muestra);
+
+        // Ejecutar
+        org.procesarEvento(evento);
+
+        // Verificar que se llamó a pluginValidacion.nuevoEvento
+        verify(org.getPluginValidacion(), times(1)).nuevoEvento(org, zona, muestra);
+
+        // pluginCarga no debería ser llamado
+        verify(org.getPluginCarga(), never()).nuevoEvento(any(), any(), any());
+    }
 }
+
