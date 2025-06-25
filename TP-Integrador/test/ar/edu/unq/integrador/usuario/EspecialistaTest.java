@@ -104,4 +104,42 @@ class EspecialistaTest {
 		 assertEquals("Un Especialista no puede ser degradado a Basico porque tiene validacion externa", excepcion.getMessage());
 	 }
 
+
+
+@Test
+void test_UnEspecialistaPuedeCrearVariasMuestras() {
+	// Setup
+    Usuario especialista = new Especialista("Especialista");
+    Formulario formulario1 = new Formulario("Foto 1", Concepto.VINCHUCA_GUASAYANA, new Ubicacion(1, 1), especialista);
+    Formulario formulario2 = new Formulario("Foto 2", Concepto.CHINCHE_FOLIADA, new Ubicacion(2, 2), especialista);
+    
+    // Exercise
+    Muestra muestra1 = especialista.crearMuestra(formulario1);
+    Muestra muestra2 = especialista.crearMuestra(formulario2);
+    
+    // Verify
+    assertNotNull(muestra1);
+    assertNotNull(muestra2);
+    assertNotEquals(muestra1, muestra2);
+    assertEquals(muestra1.getOpiniones().size(), 1);
+    assertEquals(muestra2.getOpiniones().size(), 1);
+}
+
+@Test
+void test_OpinionesDeEspecialistaIncrementanContador() {
+	// Setup
+    Usuario especialista = new Especialista("Especialista");
+    Usuario usuarioBasico = new Usuario("Basico");
+    Formulario formulario = new Formulario("Foto", Concepto.VINCHUCA_GUASAYANA, new Ubicacion(1, 1), usuarioBasico);
+    Muestra muestra = usuarioBasico.crearMuestra(formulario);
+    
+    // Exercise
+    int opinionesAntes = especialista.cantidadTotalDeOpinionesRealizadas();
+    especialista.opinarSobreMuestra(Concepto.CHINCHE_FOLIADA, muestra);
+    int opinionesDespues = especialista.cantidadTotalDeOpinionesRealizadas();
+
+    // Verify
+    assertEquals(opinionesAntes + 1, opinionesDespues);
+}
+
 }
