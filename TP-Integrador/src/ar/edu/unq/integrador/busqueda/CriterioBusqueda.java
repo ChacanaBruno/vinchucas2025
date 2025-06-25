@@ -6,7 +6,15 @@ import java.util.List;
 import ar.edu.unq.integrador.muestra.Muestra;
 
 public class CriterioBusqueda {
-
+	// atributos
+	private List<FiltroDeBusqueda> filtros = new ArrayList<>();
+	
+	// Constructor
+	public CriterioBusqueda(List<FiltroDeBusqueda> filtros) {
+		this.setFiltros(filtros);
+	}
+	
+	// Accesing
 	public List<FiltroDeBusqueda> getFiltros() {
 		return filtros;
 	}
@@ -15,12 +23,7 @@ public class CriterioBusqueda {
 		this.filtros = filtros;
 	}
 
-	private List<FiltroDeBusqueda> filtros = new ArrayList<>();
-
-	public CriterioBusqueda(List<FiltroDeBusqueda> filtros) {
-		this.setFiltros(filtros);
-	}
-
+	// Metodos
 	public CriterioBusqueda agregarFiltro(FiltroDeBusqueda filtro) {
 		this.getFiltros().add(filtro);
 		return this;
