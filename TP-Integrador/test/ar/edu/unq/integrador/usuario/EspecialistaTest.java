@@ -174,7 +174,7 @@ void test_SeCreaUnEspecialistaConNombre() {
     // Exercise
     Especialista especialista = new Especialista("Dra. Vinchuca");
 
-    // Verify
+    // Verify-
     assertEquals("Dra. Vinchuca", especialista.getNombre());
     assertEquals(0, especialista.cantidadTotalDeOpinionesRealizadas());
 }
