@@ -95,4 +95,17 @@ public class ZonaDeCoberturaTest {
 
 		verify(notificador, never()).notificar(any(), any());
 	}
+	
+	@Test
+	void test_ZonaNoSeSolapaConOtraZona() {
+	    Ubicacion ubicacion1 = mock(Ubicacion.class);
+	    Ubicacion ubicacion2 = mock(Ubicacion.class);
+
+	    when(ubicacion1.distanciaALaUbicacion(ubicacion2)).thenReturn(15.0);
+
+	    ZonaDeCobertura zona1 = new ZonaDeCobertura("Z1", ubicacion1, 5.0, mock(INotificador.class));
+	    ZonaDeCobertura zona2 = new ZonaDeCobertura("Z2", ubicacion2, 5.0, mock(INotificador.class));
+
+	    assertFalse(zona1.seSolapaCon(zona2));
+	}
 }

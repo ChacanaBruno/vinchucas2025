@@ -60,4 +60,45 @@ public class NotificadorTest {
 		verify(interesado).recibirNotifacionDeMuestra(zona, muestra);
 		verify(interesado).recibirNotifacionDeMuestraValidada(zona, muestra);
 	}
+	
+	@Test
+	void testMultiplesInteresadosRecibenLaNotificacion() {
+	    Notificador notificador = new Notificador();
+	    Interesado interesado1 = mock(Interesado.class);
+	    Interesado interesado2 = mock(Interesado.class);
+
+	    notificador.subscribir(interesado1);
+	    notificador.subscribir(interesado2);
+
+	    ZonaDeCobertura zona = mock(ZonaDeCobertura.class);
+	    Muestra muestra = mock(Muestra.class);
+	    when(muestra.estaVerificada()).thenReturn(true);
+
+	    notificador.notificar(zona, List.of(muestra));
+
+	    verify(interesado1).recibirNotifacionDeMuestra(zona, muestra);
+	    verify(interesado2).recibirNotifacionDeMuestra(zona, muestra);
+	    verify(interesado1).recibirNotifacionDeMuestraValidada(zona, muestra);
+	    verify(interesado2).recibirNotifacionDeMuestraValidada(zona, muestra);
+	}
+	
+	@Test
+	void testDesuscribirUnoDejaAlOtroRecibiendo() {
+	    Notificador notificador = new Notificador();
+	    Interesado interesado1 = mock(Interesado.class);
+	    Interesado interesado2 = mock(Interesado.class);
+
+	    notificador.subscribir(interesado1);
+	    notificador.subscribir(interesado2);
+	    notificador.desuscribir(interesado1);
+
+	    ZonaDeCobertura zona = mock(ZonaDeCobertura.class);
+	    Muestra muestra = mock(Muestra.class);
+	    when(muestra.estaVerificada()).thenReturn(true);
+
+	    notificador.notificar(zona, List.of(muestra));
+
+	    verify(interesado1, never()).recibirNotifacionDeMuestra(any(), any());
+	    verify(interesado2).recibirNotifacionDeMuestra(zona, muestra);
+	}
 }
