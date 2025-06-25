@@ -96,7 +96,108 @@ class UbicacionTest {
 	}
 	
 	
-	
-	
+	@Test
+	void test_UbicacionFiltraListaVaciaYDevuelveListaVacia() {
+		//Setup
+	    Ubicacion origen = new Ubicacion(-34.70637371362339, -58.27837794516907);
+	    List<Ubicacion> ubicaciones = List.of();
+        
+	    //Exercise
+	    List<Ubicacion> resultado = origen.ubicacionesAMenosDeXKilometros(5, ubicaciones);
 
+	    //Verify
+	    assertTrue(resultado.isEmpty());
+	}
+	
+	@Test
+	void test_UbicacionFiltraMuestrasConListaVacia() {
+	    Ubicacion origen = new Ubicacion(-34.70637371362339, -58.27837794516907);
+	    List<Muestra> muestras = List.of();
+
+	    List<Muestra> resultado = origen.muestrasAMenosDeXKilometros(5, muestras);
+
+	    assertTrue(resultado.isEmpty());
+	}
+
+	@Test
+	void test_TodasLasUbicacionesEstanDentroDelRango() {
+	    Ubicacion origen = new Ubicacion(-34.706, -58.278);
+
+	    Ubicacion ubicacion1 = new Ubicacion(-34.7061, -58.2781);
+	    Ubicacion ubicacion2 = new Ubicacion(-34.7062, -58.2782);
+	    Ubicacion ubicacion3 = new Ubicacion(-34.7063, -58.2783);
+	    Ubicacion ubicacion4 = new Ubicacion(-34.7064, -58.2784);
+	    Ubicacion ubicacion5 = new Ubicacion(-34.7065, -58.2785);
+	    Ubicacion ubicacion6 = new Ubicacion(-34.7059, -58.2779);
+	    Ubicacion ubicacion7 = new Ubicacion(-34.7058, -58.2778);
+	    Ubicacion ubicacion8 = new Ubicacion(-34.7057, -58.2777);
+	    Ubicacion ubicacion9 = new Ubicacion(-34.7056, -58.2776);
+	    Ubicacion ubicacion10 = new Ubicacion(-34.7055, -58.2775);
+	    Ubicacion ubicacion11 = new Ubicacion(-34.7066, -58.2786);
+	    Ubicacion ubicacion12 = new Ubicacion(-34.7067, -58.2787);
+	    Ubicacion ubicacion13 = new Ubicacion(-34.7054, -58.2774);
+	    Ubicacion ubicacion14 = new Ubicacion(-34.7053, -58.2773);
+	    Ubicacion ubicacion15 = new Ubicacion(-34.7052, -58.2772);
+
+	    List<Ubicacion> ubicaciones = List.of(
+	        ubicacion1, ubicacion2, ubicacion3, ubicacion4, ubicacion5,
+	        ubicacion6, ubicacion7, ubicacion8, ubicacion9, ubicacion10,
+	        ubicacion11, ubicacion12, ubicacion13, ubicacion14, ubicacion15
+	    );
+
+	    List<Ubicacion> resultado = origen.ubicacionesAMenosDeXKilometros(1.0, ubicaciones);
+
+	    assertTrue(resultado.containsAll(ubicaciones));
+	}
+	
+	@Test
+	void test_TodasLasMuestrasEstanDentroDelRango() {
+	    // Setup
+	    Ubicacion origen = new Ubicacion(-34.706, -58.278);
+	    Usuario usuario = new Usuario("Arnold");
+
+	    Formulario f1 = new Formulario("Foto1", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7061, -58.2781), usuario);
+	    Formulario f2 = new Formulario("Foto2", Concepto.VINCHUCA_INFESTANS, new Ubicacion(-34.7062, -58.2782), usuario);
+	    Formulario f3 = new Formulario("Foto3", Concepto.CHINCHE_FOLIADA, new Ubicacion(-34.7063, -58.2783), usuario);
+	    Formulario f4 = new Formulario("Foto4", Concepto.IMAGEN_POCO_CLARA, new Ubicacion(-34.7064, -58.2784), usuario);
+	    Formulario f5 = new Formulario("Foto5", Concepto.NO_DEFINIDO, new Ubicacion(-34.7065, -58.2785), usuario);
+	    Formulario f6 = new Formulario("Foto6", Concepto.VINCHUCA_GUASAYANA, new Ubicacion(-34.7059, -58.2779), usuario);
+	    Formulario f7 = new Formulario("Foto7", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7058, -58.2778), usuario);
+	    Formulario f8 = new Formulario("Foto8", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7057, -58.2777), usuario);
+	    Formulario f9 = new Formulario("Foto9", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7056, -58.2776), usuario);
+	    Formulario f10 = new Formulario("Foto10", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7055, -58.2775), usuario);
+	    Formulario f11 = new Formulario("Foto11", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7066, -58.2786), usuario);
+	    Formulario f12 = new Formulario("Foto12", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7067, -58.2787), usuario);
+	    Formulario f13 = new Formulario("Foto13", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7054, -58.2774), usuario);
+	    Formulario f14 = new Formulario("Foto14", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7053, -58.2773), usuario);
+	    Formulario f15 = new Formulario("Foto15", Concepto.VINCHUCA_SORDIDA, new Ubicacion(-34.7052, -58.2772), usuario);
+
+	    Muestra m1 = usuario.crearMuestra(f1);
+	    Muestra m2 = usuario.crearMuestra(f2);
+	    Muestra m3 = usuario.crearMuestra(f3);
+	    Muestra m4 = usuario.crearMuestra(f4);
+	    Muestra m5 = usuario.crearMuestra(f5);
+	    Muestra m6 = usuario.crearMuestra(f6);
+	    Muestra m7 = usuario.crearMuestra(f7);
+	    Muestra m8 = usuario.crearMuestra(f8);
+	    Muestra m9 = usuario.crearMuestra(f9);
+	    Muestra m10 = usuario.crearMuestra(f10);
+	    Muestra m11 = usuario.crearMuestra(f11);
+	    Muestra m12 = usuario.crearMuestra(f12);
+	    Muestra m13 = usuario.crearMuestra(f13);
+	    Muestra m14 = usuario.crearMuestra(f14);
+	    Muestra m15 = usuario.crearMuestra(f15);
+
+	    List<Muestra> muestras = List.of(
+	        m1, m2, m3, m4, m5,
+	        m6, m7, m8, m9, m10,
+	        m11, m12, m13, m14, m15
+	    );
+
+	    // Exercise
+	    List<Muestra> resultado = origen.muestrasAMenosDeXKilometros(1.0, muestras);
+
+	    // Verify
+	    assertTrue(resultado.containsAll(muestras));
+	}
 }
