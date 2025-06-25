@@ -309,4 +309,117 @@ class UbicacionTest {
 	    // Verify
 	    assertTrue(resultado.isEmpty());
 	}
+	
+	@Test
+	void test_TodasLas50UbicacionesEstanFueraDelRango() {
+	    Ubicacion origen = new Ubicacion(-34.706, -58.278);
+
+	    Ubicacion ubicacion1 = new Ubicacion(-34.716, -58.288);
+	    Ubicacion ubicacion2 = new Ubicacion(-34.717, -58.289);
+	    Ubicacion ubicacion3 = new Ubicacion(-34.718, -58.290);
+	    Ubicacion ubicacion4 = new Ubicacion(-34.719, -58.291);
+	    Ubicacion ubicacion5 = new Ubicacion(-34.720, -58.292);
+	    Ubicacion ubicacion6 = new Ubicacion(-34.721, -58.293);
+	    Ubicacion ubicacion7 = new Ubicacion(-34.722, -58.294);
+	    Ubicacion ubicacion8 = new Ubicacion(-34.723, -58.295);
+	    Ubicacion ubicacion9 = new Ubicacion(-34.724, -58.296);
+	    Ubicacion ubicacion10 = new Ubicacion(-34.725, -58.297);
+	    Ubicacion ubicacion11 = new Ubicacion(-34.726, -58.298);
+	    Ubicacion ubicacion12 = new Ubicacion(-34.727, -58.299);
+	    Ubicacion ubicacion13 = new Ubicacion(-34.728, -58.300);
+	    Ubicacion ubicacion14 = new Ubicacion(-34.729, -58.301);
+	    Ubicacion ubicacion15 = new Ubicacion(-34.730, -58.302);
+	    Ubicacion ubicacion16 = new Ubicacion(-34.731, -58.303);
+	    Ubicacion ubicacion17 = new Ubicacion(-34.732, -58.304);
+	    Ubicacion ubicacion18 = new Ubicacion(-34.733, -58.305);
+	    Ubicacion ubicacion19 = new Ubicacion(-34.734, -58.306);
+	    Ubicacion ubicacion20 = new Ubicacion(-34.735, -58.307);
+	    Ubicacion ubicacion21 = new Ubicacion(-34.736, -58.308);
+	    Ubicacion ubicacion22 = new Ubicacion(-34.737, -58.309);
+	    Ubicacion ubicacion23 = new Ubicacion(-34.738, -58.310);
+	    Ubicacion ubicacion24 = new Ubicacion(-34.739, -58.311);
+	    Ubicacion ubicacion25 = new Ubicacion(-34.740, -58.312);
+	    Ubicacion ubicacion26 = new Ubicacion(-34.741, -58.313);
+	    Ubicacion ubicacion27 = new Ubicacion(-34.742, -58.314);
+	    Ubicacion ubicacion28 = new Ubicacion(-34.743, -58.315);
+	    Ubicacion ubicacion29 = new Ubicacion(-34.744, -58.316);
+	    Ubicacion ubicacion30 = new Ubicacion(-34.745, -58.317);
+	    Ubicacion ubicacion31 = new Ubicacion(-34.746, -58.318);
+	    Ubicacion ubicacion32 = new Ubicacion(-34.747, -58.319);
+	    Ubicacion ubicacion33 = new Ubicacion(-34.748, -58.320);
+	    Ubicacion ubicacion34 = new Ubicacion(-34.749, -58.321);
+	    Ubicacion ubicacion35 = new Ubicacion(-34.750, -58.322);
+	    Ubicacion ubicacion36 = new Ubicacion(-34.751, -58.323);
+	    Ubicacion ubicacion37 = new Ubicacion(-34.752, -58.324);
+	    Ubicacion ubicacion38 = new Ubicacion(-34.753, -58.325);
+	    Ubicacion ubicacion39 = new Ubicacion(-34.754, -58.326);
+	    Ubicacion ubicacion40 = new Ubicacion(-34.755, -58.327);
+	    Ubicacion ubicacion41 = new Ubicacion(-34.756, -58.328);
+	    Ubicacion ubicacion42 = new Ubicacion(-34.757, -58.329);
+	    Ubicacion ubicacion43 = new Ubicacion(-34.758, -58.330);
+	    Ubicacion ubicacion44 = new Ubicacion(-34.759, -58.331);
+	    Ubicacion ubicacion45 = new Ubicacion(-34.760, -58.332);
+	    Ubicacion ubicacion46 = new Ubicacion(-34.761, -58.333);
+	    Ubicacion ubicacion47 = new Ubicacion(-34.762, -58.334);
+	    Ubicacion ubicacion48 = new Ubicacion(-34.763, -58.335);
+	    Ubicacion ubicacion49 = new Ubicacion(-34.764, -58.336);
+	    Ubicacion ubicacion50 = new Ubicacion(-34.765, -58.337);
+
+	    List<Ubicacion> ubicaciones = List.of(
+	        ubicacion1,
+	        ubicacion2,
+	        ubicacion3,
+	        ubicacion4,
+	        ubicacion5,
+	        ubicacion6,
+	        ubicacion7,
+	        ubicacion8,
+	        ubicacion9,
+	        ubicacion10,
+	        ubicacion11,
+	        ubicacion12,
+	        ubicacion13,
+	        ubicacion14,
+	        ubicacion15,
+	        ubicacion16,
+	        ubicacion17,
+	        ubicacion18,
+	        ubicacion19,
+	        ubicacion20,
+	        ubicacion21,
+	        ubicacion22,
+	        ubicacion23,
+	        ubicacion24,
+	        ubicacion25,
+	        ubicacion26,
+	        ubicacion27,
+	        ubicacion28,
+	        ubicacion29,
+	        ubicacion30,
+	        ubicacion31,
+	        ubicacion32,
+	        ubicacion33,
+	        ubicacion34,
+	        ubicacion35,
+	        ubicacion36,
+	        ubicacion37,
+	        ubicacion38,
+	        ubicacion39,
+	        ubicacion40,
+	        ubicacion41,
+	        ubicacion42,
+	        ubicacion43,
+	        ubicacion44,
+	        ubicacion45,
+	        ubicacion46,
+	        ubicacion47,
+	        ubicacion48,
+	        ubicacion49,
+	        ubicacion50
+	    );
+
+	    List<Ubicacion> resultado = origen.ubicacionesAMenosDeXKilometros(1.0, ubicaciones);
+
+	    assertTrue(resultado.isEmpty());
+	}
 }
