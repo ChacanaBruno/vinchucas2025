@@ -142,4 +142,41 @@ void test_OpinionesDeEspecialistaIncrementanContador() {
     assertEquals(opinionesAntes + 1, opinionesDespues);
 }
 
+@Test
+void test_EspecialistaOpinaSobreDosMuestrasYSeActualizaElContador() {
+    // Setup
+    Usuario especialista = new Especialista("Especialista");
+
+    Usuario usuarioBasico1 = new Usuario("Basico1"); 
+    Formulario formulario1 = new Formulario("Foto1", Concepto.VINCHUCA_GUASAYANA, new Ubicacion(1, 1), usuarioBasico1);
+    Muestra muestra1 = usuarioBasico1.crearMuestra(formulario1);
+
+    Usuario usuarioBasico2 = new Usuario("Basico2"); 
+    Formulario formulario2 = new Formulario("Foto2", Concepto.CHINCHE_FOLIADA, new Ubicacion(2, 2), usuarioBasico2);
+    Muestra muestra2 = usuarioBasico2.crearMuestra(formulario2);
+
+    // Exercise
+    int opinionesAntes = especialista.cantidadTotalDeOpinionesRealizadas();
+    
+    especialista.opinarSobreMuestra(Concepto.CHINCHE_FOLIADA, muestra1);
+    especialista.opinarSobreMuestra(Concepto.VINCHUCA_GUASAYANA, muestra2);
+    
+    int opinionesDespues = especialista.cantidadTotalDeOpinionesRealizadas();
+
+    // Verify
+    assertEquals(opinionesAntes + 2, opinionesDespues);
+    assertEquals(2, muestra1.getOpiniones().size());
+    assertEquals(2, muestra2.getOpiniones().size());
+}
+
+@Test
+void test_SeCreaUnEspecialistaConNombre() {
+    // Exercise
+    Especialista especialista = new Especialista("Dra. Vinchuca");
+
+    // Verify
+    assertEquals("Dra. Vinchuca", especialista.getNombre());
+    assertEquals(0, especialista.cantidadTotalDeOpinionesRealizadas());
+}
+
 }
