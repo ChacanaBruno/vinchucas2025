@@ -490,4 +490,131 @@ class ZonaDeCoberturaTest {
 	    assertTrue(zona.perteneceALaZonaDeCobertura(muestra9));
 	    assertTrue(zona.perteneceALaZonaDeCobertura(muestra10));
 	}
+	
+	@Test
+	void testAlgunasPertenecenYOtrasNoPertenecenALaZonaDeCobertura() {
+	    Ubicacion epicentro = mock(Ubicacion.class);
+	    ZonaDeCobertura zona = new ZonaDeCobertura("Zona", epicentro, 5.0);
+
+	    Ubicacion ubicacion1 = mock(Ubicacion.class);
+	    Muestra muestra1 = mock(Muestra.class);
+	    when(muestra1.getUbicacion()).thenReturn(ubicacion1);
+	    when(epicentro.distanciaALaUbicacion(ubicacion1)).thenReturn(1.0);
+
+	    Ubicacion ubicacion2 = mock(Ubicacion.class);
+	    Muestra muestra2 = mock(Muestra.class);
+	    when(muestra2.getUbicacion()).thenReturn(ubicacion2);
+	    when(epicentro.distanciaALaUbicacion(ubicacion2)).thenReturn(2.0);
+
+	    Ubicacion ubicacion3 = mock(Ubicacion.class);
+	    Muestra muestra3 = mock(Muestra.class);
+	    when(muestra3.getUbicacion()).thenReturn(ubicacion3);
+	    when(epicentro.distanciaALaUbicacion(ubicacion3)).thenReturn(3.0);
+
+	    Ubicacion ubicacion4 = mock(Ubicacion.class);
+	    Muestra muestra4 = mock(Muestra.class);
+	    when(muestra4.getUbicacion()).thenReturn(ubicacion4);
+	    when(epicentro.distanciaALaUbicacion(ubicacion4)).thenReturn(4.0);
+
+	    Ubicacion ubicacion5 = mock(Ubicacion.class);
+	    Muestra muestra5 = mock(Muestra.class);
+	    when(muestra5.getUbicacion()).thenReturn(ubicacion5);
+	    when(epicentro.distanciaALaUbicacion(ubicacion5)).thenReturn(5.0);
+
+	    Ubicacion ubicacion6 = mock(Ubicacion.class);
+	    Muestra muestra6 = mock(Muestra.class);
+	    when(muestra6.getUbicacion()).thenReturn(ubicacion6);
+	    when(epicentro.distanciaALaUbicacion(ubicacion6)).thenReturn(2.5);
+
+	    Ubicacion ubicacion7 = mock(Ubicacion.class);
+	    Muestra muestra7 = mock(Muestra.class);
+	    when(muestra7.getUbicacion()).thenReturn(ubicacion7);
+	    when(epicentro.distanciaALaUbicacion(ubicacion7)).thenReturn(4.9);
+
+	    Ubicacion ubicacion8 = mock(Ubicacion.class);
+	    Muestra muestra8 = mock(Muestra.class);
+	    when(muestra8.getUbicacion()).thenReturn(ubicacion8);
+	    when(epicentro.distanciaALaUbicacion(ubicacion8)).thenReturn(0.1);
+
+	    Ubicacion ubicacion9 = mock(Ubicacion.class);
+	    Muestra muestra9 = mock(Muestra.class);
+	    when(muestra9.getUbicacion()).thenReturn(ubicacion9);
+	    when(epicentro.distanciaALaUbicacion(ubicacion9)).thenReturn(3.3);
+
+	    Ubicacion ubicacion10 = mock(Ubicacion.class);
+	    Muestra muestra10 = mock(Muestra.class);
+	    when(muestra10.getUbicacion()).thenReturn(ubicacion10);
+	    when(epicentro.distanciaALaUbicacion(ubicacion10)).thenReturn(1.7);
+
+	    Ubicacion ubicacion11 = mock(Ubicacion.class);
+	    Muestra muestra11 = mock(Muestra.class);
+	    when(muestra11.getUbicacion()).thenReturn(ubicacion11);
+	    when(epicentro.distanciaALaUbicacion(ubicacion11)).thenReturn(5.1);
+
+	    Ubicacion ubicacion12 = mock(Ubicacion.class);
+	    Muestra muestra12 = mock(Muestra.class);
+	    when(muestra12.getUbicacion()).thenReturn(ubicacion12);
+	    when(epicentro.distanciaALaUbicacion(ubicacion12)).thenReturn(6.0);
+
+	    Ubicacion ubicacion13 = mock(Ubicacion.class);
+	    Muestra muestra13 = mock(Muestra.class);
+	    when(muestra13.getUbicacion()).thenReturn(ubicacion13);
+	    when(epicentro.distanciaALaUbicacion(ubicacion13)).thenReturn(7.5);
+
+	    Ubicacion ubicacion14 = mock(Ubicacion.class);
+	    Muestra muestra14 = mock(Muestra.class);
+	    when(muestra14.getUbicacion()).thenReturn(ubicacion14);
+	    when(epicentro.distanciaALaUbicacion(ubicacion14)).thenReturn(8.0);
+
+	    Ubicacion ubicacion15 = mock(Ubicacion.class);
+	    Muestra muestra15 = mock(Muestra.class);
+	    when(muestra15.getUbicacion()).thenReturn(ubicacion15);
+	    when(epicentro.distanciaALaUbicacion(ubicacion15)).thenReturn(10.0);
+
+	    Ubicacion ubicacion16 = mock(Ubicacion.class);
+	    Muestra muestra16 = mock(Muestra.class);
+	    when(muestra16.getUbicacion()).thenReturn(ubicacion16);
+	    when(epicentro.distanciaALaUbicacion(ubicacion16)).thenReturn(5.5);
+
+	    Ubicacion ubicacion17 = mock(Ubicacion.class);
+	    Muestra muestra17 = mock(Muestra.class);
+	    when(muestra17.getUbicacion()).thenReturn(ubicacion17);
+	    when(epicentro.distanciaALaUbicacion(ubicacion17)).thenReturn(6.9);
+
+	    Ubicacion ubicacion18 = mock(Ubicacion.class);
+	    Muestra muestra18 = mock(Muestra.class);
+	    when(muestra18.getUbicacion()).thenReturn(ubicacion18);
+	    when(epicentro.distanciaALaUbicacion(ubicacion18)).thenReturn(9.1);
+
+	    Ubicacion ubicacion19 = mock(Ubicacion.class);
+	    Muestra muestra19 = mock(Muestra.class);
+	    when(muestra19.getUbicacion()).thenReturn(ubicacion19);
+	    when(epicentro.distanciaALaUbicacion(ubicacion19)).thenReturn(11.0);
+
+	    Ubicacion ubicacion20 = mock(Ubicacion.class);
+	    Muestra muestra20 = mock(Muestra.class);
+	    when(muestra20.getUbicacion()).thenReturn(ubicacion20);
+	    when(epicentro.distanciaALaUbicacion(ubicacion20)).thenReturn(15.0);
+
+	    assertTrue(zona.perteneceALaZonaDeCobertura(muestra1));
+	    assertTrue(zona.perteneceALaZonaDeCobertura(muestra2));
+	    assertTrue(zona.perteneceALaZonaDeCobertura(muestra3));
+	    assertTrue(zona.perteneceALaZonaDeCobertura(muestra4));
+	    assertTrue(zona.perteneceALaZonaDeCobertura(muestra5));
+	    assertTrue(zona.perteneceALaZonaDeCobertura(muestra6));
+	    assertTrue(zona.perteneceALaZonaDeCobertura(muestra7));
+	    assertTrue(zona.perteneceALaZonaDeCobertura(muestra8));
+	    assertTrue(zona.perteneceALaZonaDeCobertura(muestra9));
+	    assertTrue(zona.perteneceALaZonaDeCobertura(muestra10));
+	    assertFalse(zona.perteneceALaZonaDeCobertura(muestra11));
+	    assertFalse(zona.perteneceALaZonaDeCobertura(muestra12));
+	    assertFalse(zona.perteneceALaZonaDeCobertura(muestra13));
+	    assertFalse(zona.perteneceALaZonaDeCobertura(muestra14));
+	    assertFalse(zona.perteneceALaZonaDeCobertura(muestra15));
+	    assertFalse(zona.perteneceALaZonaDeCobertura(muestra16));
+	    assertFalse(zona.perteneceALaZonaDeCobertura(muestra17));
+	    assertFalse(zona.perteneceALaZonaDeCobertura(muestra18));
+	    assertFalse(zona.perteneceALaZonaDeCobertura(muestra19));
+	    assertFalse(zona.perteneceALaZonaDeCobertura(muestra20));
+	}
 }

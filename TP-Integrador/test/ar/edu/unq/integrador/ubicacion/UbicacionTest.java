@@ -338,7 +338,7 @@ class UbicacionTest {
 	}
 	
 	@Test
-	void test_TodasLas50UbicacionesEstanFueraDelRango() {
+	void test_TodasLasUbicacionesEstanFueraDelRango() {
 	    Ubicacion origen = new Ubicacion(-34.706, -58.278);
 
 	    Ubicacion ubicacion1 = new Ubicacion(-34.716, -58.288);
